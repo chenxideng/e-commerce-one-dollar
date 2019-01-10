@@ -1,0 +1,44 @@
+﻿<footer class="footer">
+	<div class="u-ft-nav" id="fLoginInfo">
+	    <span><a href="{WEB_PATH}/mobile/mobile/">首页</a><b></b></span>
+		<span><a href="{WEB_PATH}/mobile/mobile/about">新手指南</a><b></b></span>
+		<span><a href="{WEB_PATH}/mobile/user/login">登录</a><b></b></span>
+		<span><a href="{WEB_PATH}/mobile/user/register">注册</a></span>
+	</div>
+	<p class="m-ftA"><a href="{WEB_PATH}/mobile/mobile">触屏版</a><a href="{G_WEB_PATH}" target="_blank">电脑版</a></p>
+	<p class="grayc">客服热线<span class="orange">{wc:fun:_cfg("cell")}</span>{wc:fun:_cfg('web_copyright')}</p>
+	<a id="btnTop" href="javascript:;" class="z-top" style="display:none;"><b class="z-arrow"></b></a>
+	
+    <div class="footerdi" style="bottom: 0px;">
+		<ul>
+		    <li class="f_home"> <a title="首页" href="{WEB_PATH}/mobile/mobile/"> <i class="cur">&nbsp;</i> 首页 </a> </li>
+		    <li class="f_whole"> <a title="所有商品" href="{WEB_PATH}/mobile/mobile/glist"> <i class="">&nbsp;</i> 所有商品 </a> </li>
+		    <li class="f_jiexiao"> <a title="最新揭晓" href="{WEB_PATH}/mobile/mobile/lottery"> <i class="">&nbsp;</i> 最新揭晓 </a> </li>
+		    <li class="f_car"> <a title="首页" href="{WEB_PATH}/mobile/cart/cartlist"> <i id="btnCart" style="position: relative;" class="">&nbsp;<em>2</em></i> 购物车 </a> </li>
+		    <li class="f_personal"> <a title="我的主页" href="{WEB_PATH}/mobile/home"> <i class="">&nbsp;</i> 我的主页 </a> </li>
+		</ul>
+  <script type="text/javascript">
+    //返回顶部
+    $(function() {
+        $("#btnGotoTop").click(function() {
+            $("html,body").animate({
+                scrollTop: 0
+            }, 1500);
+        });
+    });
+
+    function Show_Hidden(btnGotoTop3) {
+        if (btnGotoTop3.style.display == "block") {
+            btnGotoTop3.style.display = 'none';
+        } else {
+            btnGotoTop3.style.display = 'block';
+        }
+    }
+    </script>
+</div>
+
+<div id="pageDialogBG" class="pageDialogBG">
+    <div class="Prompt"></div>
+</div>
+<input name="hidLineLink" type="hidden" id="hidLineLink" value="{WEB_PATH}/mobile/mobile/">
+</footer>
