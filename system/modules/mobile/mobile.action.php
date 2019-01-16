@@ -260,6 +260,13 @@ class mobile extends base {
 			$gorecode=$this->db->GetOne("select * from `@#_member_go_record` where `shopid`='".$itemlist[0]['id']."' AND `shopqishu`='".$itemlist[0]['qishu']."' and huode!=0 ORDER BY id DESC LIMIT 1");
 		}
 
+
+		foreach($itemlist as $history){
+			$shop.=$history['id'].',';
+		}
+		$id=trim($shop,',');
+		$gorecode_lists = $this->db->GetList("select * from `@#_member_go_record` where `shopid` IN ($id) and huode!=0 ORDER BY id DESC");
+ 
 		//echo "<pre>";
 		//print_r($itemlist);
 		//echo microt($itemlist[0]['q_end_time']);exit;
@@ -285,6 +292,8 @@ class mobile extends base {
 			$shaidan=0;
 			$sum=0;
 		}
+
+		$cords=$this->db->GetList("select * from `@#_member_go_record` where `shopid`='$itemid'");
 
 		include templates("mobile/index","item");
 	}

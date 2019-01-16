@@ -142,11 +142,11 @@
     font-size: 0.8rem;
     height: 28px;
     line-height: 28px;
-    border: 1px solid #2894FF;
+    border: 1px solid #ff3001;
     width: 70%;
     text-align: center;
     border-radius: 30px;
-    color: #2894FF;
+    color: #ff3001;
 }
 
 .tab_load_more {

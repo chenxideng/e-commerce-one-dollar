@@ -5,7 +5,7 @@
 }
 body,button,input,select,textarea {
 	font-size:12px;
-	font-family:arial,微软雅黑;
+	font-family:PingFang SC,Hiragino Sans GB,Heiti SC,Microsoft YaHei,WenQuanYi Micro Hei;
 }
 :focus {
 	outline:0;
@@ -1045,7 +1045,7 @@ div.pageDialog {
 .f_car em {
     display: block;
     border-radius: 110px;
-    background: #2894FF;
+    background: #ff6600;
     border: 1px solid #fff;
     height: 15px;
     width: 15px;
@@ -1057,4 +1057,24 @@ div.pageDialog {
     line-height: 15px;
     font-size: 10px;
     color: #fff;
+}
+
+.footerdi .f_home i.cur {
+    background-position: 0 0 !important;
+}
+
+.footerdi .f_whole i.cur {
+    background-position: 0 -52px !important;
+}
+
+.footerdi .f_jiexiao i.cur {
+    background-position: 0 -222px !important;
+}
+
+.footerdi .f_car i.cur {
+    background-position: 0 -105px !important;
+}
+
+.footerdi .f_personal i.cur {
+    background-position: 0 -152px !important;
 }

@@ -36,6 +36,12 @@
 	height:35px;
 	line-height:35px;
 }
+#page-header-text{
+	font-size: 16px !important;
+	line-height: 40px;
+	text-align: center;
+	color: white;
+}
 .goodsNav li a {
 	display:block;
 	color:#999;
@@ -136,7 +142,7 @@
 	width:100%;
 	padding-left:10%!important;
 	-webkit-box-sizing:border-box;
-	color:#666;
+	color:#090909;
 	background:none!important;
 	text-align:left;
 	margin:0;
@@ -241,7 +247,7 @@
 }
 .goodsList .goodsListR h2 {
 	display:block;
-	color:#666;
+	color:#090909;
 	line-height:18px;
 	text-align:left;
 	font-size:14px;
@@ -339,7 +345,7 @@
 .pNav ul.slides li a {
 	display:block;
 	padding:0 26px;
-	color:#666;
+	color:#090909;
 }
 .pNav ul.slides li.cur {
 	background:#f4f4f4;
@@ -462,7 +468,6 @@
 	width:100%;
 	padding:15px 8px;
 	background:#fff;
-	box-shadow:0 1px 1px #dbdbdb;
 	-webkit-box-sizing:border-box;
 	margin-top:-3px;
 }
@@ -473,9 +478,9 @@
 	clear:both;
 }
 .pDetails b {
-	color:#666;
+	color:#090909;
 	line-height:20px;
-	font-size:16px;
+	font-size:14px;
 }
 .pDetails a span {
 	color:#E80000;
@@ -493,47 +498,41 @@
 .pDetails-end .Progress-bar p span {
 	background:#bbb;
 }
-.pBtn {
-	width:100%;
-	margin-top:10px;
-	height:35px;
-	-webkit-box-sizing:border-box;
-}
+
 .pBtn a {
-	display:inline-block;
-	color:#fff;
-	width:49%;
-	height:33px;
-	line-height:33px;
-	text-align:center;
-	font-size:16px;
-	border-radius:3px;
+    display: inline-block;
+    color: #fff;
+    width: 42%;
+    height: 33px;
+    line-height: 33px;
+    text-align: center;
+    font-size: 14px;
+    border-radius: 3px;
 }
+
 .pBtn a.buyBtn {
-	background:#f60;
-	border:1px solid #EF6000;
+    background-image: linear-gradient(90deg,#ffc500,#ff9402);
+    border-top-left-radius: 133.33333vw;
+    border-bottom-left-radius:133.33333vw;
 }
+
 .pBtn a.addBtn {
-	background:#ffb320;
-	border:1px solid #FDA700;
+	background-image: linear-gradient(90deg,#ff7a00,#fe560a);
+    border-top-right-radius: 133.33333vw;
+    border-bottom-right-radius:133.33333vw;
 }
 .joinAndGet {
 	width:100%;
-	padding-top:5px;
 }
 .joinAndGet dl a {
 	display:block;
-	color:#666;
-	border-radius:3px;
+	color:#090909;
 	height:38px;
 	line-height:38px;
-	margin:10px 8px 0;
+	margin:5px 0;
 	padding:0 13px;
 	font-size:14px;
-	border:1px solid #dcdcdc;
-	border-radius:5px;
 	background:#fff;
-	box-shadow:1px 1px 1px #e7e7e7;
 }
 .joinAndGet dl a b {
 	border-width:2px 2px 0 0;
@@ -554,7 +553,7 @@
 .joinAndGet ul {
 	clear:both;
 	padding:10px;
-	margin:10px 8px 0;
+	margin:5px 5px 0;
 	position:relative;
 	color:#999;
 }
@@ -915,7 +914,7 @@
 	margin:0 3px;
 }
 .status3 li dd span {
-	color:#666;
+	color:#090909;
 }
 .pFortunatelycode {
 	display:block;
@@ -1034,3 +1033,267 @@
 	margin-top:5px;
 	border:1px solid #ef6000;
 }
+
+.pBtn {
+    width: 70%;
+    max-width: 640px;
+    position: fixed;
+    right: 0px;
+    bottom: 0px;
+    background: #fff;
+    -webkit-box-sizing: border-box;
+    z-index: 99999;
+    height:40px;
+}
+
+
+.pBtn .padd{border-radius: 30px 0 0 30px;background: #ff8937;
+    border: 1px solid #ff8937;
+   }
+.pBtn .pbuy{width: 42%;
+    border-radius: 0 30px 30px 0;
+     background: #2894FF;
+    border: 1px solid #2894FF;}
+.pBtn .xiangxigw,.pOngoing .xiangxigw{
+    display: block;
+    float: left;
+    width: 28px;
+    height: 24px;
+    margin: 9px 0 0 15px;
+}
+
+.pBtn .xiangxigw i,.pOngoing .xiangxigw i{
+    display: block;
+    float: left;
+    width: 28px;
+    height: 24px;
+    background: url(../../images/mobile/f_g.png) 0px -128px no-repeat;
+    background-size: 28px auto;
+    -moz-background-size: 28px auto;
+    -moz-background-size: 28px auto;
+}
+
+.pBtn .xiangxigw i em,.pOngoing .xiangxigw i em {
+    background: #ff6600 none repeat scroll 0 0;
+    border: 1px solid #fff;
+    border-radius: 50px;
+    color: #fff;
+    display: block;
+    font-family: Arial;
+    font-size: 10px;
+    height: 15px;
+    line-height: 15px;
+    position: absolute;
+    right: -7px;
+    top: -7px;
+    width: 15px;
+}
+.pBtn .xiangxigws,.pOngoing .xiangxigws{
+    display: block;
+    float: left;
+    width: 28px;
+    height: 24px;
+    margin: 9px 0 0 15px;
+}
+.pBtn .xiangxigws i,.pOngoing .xiangxigws i{
+    display: block;
+    float: left;
+    width: 28px;
+    height: 26px;
+    background: url(../../images/mobile/f_g.png) 0px -26px no-repeat;
+    background-size: 28px auto;
+    -moz-background-size: 28px auto;
+    -moz-background-size: 28px auto;
+}
+
+
+.pBtn .xiangxigws i em,.pOngoing .xiangxigws i em {
+    background: #2894FF none repeat scroll 0 0;
+    border: 1px solid #fff;
+    border-radius: 50px;
+    color: #fff;
+    display: block;
+    font-family: Arial;
+    font-size: 10px;
+    height: 15px;
+    line-height: 15px;
+    position: absolute;
+    right: -7px;
+    top: -7px;
+    width: 15px;
+}
+
+.pBtn a.addBtn {
+    /*background: #2af;*/
+    /*border: 1px solid #2af;*/
+   background-color: #fd5100;
+}
+
+/*参与记录与历史获得者*/
+#item-records div{
+	background-color: white;
+	font-size:12px;
+}
+.item-records-tabs-menu{
+	width: 100%;
+	height: 42px;
+	border-bottom: 1px solid #e7e7e7;
+}
+.item-records-tabs-menu>div{
+	float: left;
+	width: 50%;
+	line-height: 42px;
+	font-size: 14px;
+	text-align: center;
+	color: #999;
+	cursor: pointer;
+}
+.item-records-tabs-menu-participant{
+	border-right: 1px solid #e7e7e7;
+	box-sizing: border-box;
+}
+.item-records-tabs-menu>div>span{
+	display: inline-block;
+	height: 42px;
+}
+.item-records-tabs-menu>div.active>span{
+	color: #ff6600;
+	border-bottom: 3px solid #ff6600;
+	box-sizing: border-box;
+	font-size:14px;
+}
+/*参与记录*/
+.item-records-tabs-participant-list>li{
+	padding: 10px 15px;
+	border-bottom: 1px solid #e7e7e7;
+	overflow: hidden;
+	font-size:12px;
+}
+.item-records-tabs-participant-list>li:last-of-type{
+	border-bottom: none;
+}
+.item-records-tabs-participant-list>li>a{
+	display: block;
+	color: #999;
+	overflow: hidden;
+}
+.item-records-tabs-participant-list>li>a:first-of-type{
+	float: left;
+}
+.item-records-tabs-participant-list>li>a:last-of-type{
+	float: right;
+}
+.item-records-tabs-participant-list>li>a:hover{
+	color: #999;
+}
+.item-records-tabs-participant-list>li>a>div{
+	height: 30px;
+}
+.item-records-tabs-participant-left{
+	float: left;
+}
+.item-records-tabs-participant-left-avatar img{
+	width: 30px;
+	height: 30px;
+	border: 1px solid #e7e7e7;
+	border-radius: 50%;
+	box-sizing: border-box;
+}
+.item-records-tabs-participant-center{
+	float: left;
+	margin-left: 10px;
+	height: 30px;
+}
+.item-records-tabs-participant-center>div{
+	font-size: 14px;
+	line-height: 15px;
+}
+.item-records-tabs-participant-center>div>span{
+	display: block;
+	max-width: 160px;
+	white-space: nowrap;
+	overflow: hidden;
+	text-overflow: ellipsis;
+	font-size:12px;
+}
+.item-records-tabs-participant-center-name{
+	color: #333;
+}
+.item-records-tabs-participant-right{
+	float: right;
+}
+.item-records-tabs-participant-right>div{
+	display: inline-block;
+	font-size: 14px;
+	line-height: 30px;
+}
+.item-records-tabs-participant-right-number span{
+	color: #2894FF;
+}
+.item-records-tabs-participant-right-arrow-container{
+    margin: 0 2px 0 5px;
+}
+.item-records-tabs-participant-right-arrow{
+	display: block;
+    width: 6px;
+    height: 6px;
+    font-size: 0;
+    line-height: 0;
+    transform: rotate(45deg);
+    -webkit-transform: rotate(45deg);
+    border: solid #BBB;
+    border-width: 2px 2px 0 0;
+}
+/*历史获得者*/
+.item-records-tabs-winner-list>li{
+	padding: 10px 15px;
+	border-bottom: 1px solid #e7e7e7;
+}
+.item-records-tabs-winner-list>li:last-of-type{
+	border-bottom: none;
+}
+.item-records-tabs-winner-list div{
+	color: #666;
+}
+.item-records-tabs-winner-title{
+	margin-bottom: 5px;
+	font-size: 14px;
+	line-height: 20px;
+	overflow: hidden;
+	white-space: nowrap;
+	text-overflow: ellipsis;
+}
+.item-records-tabs-winner-content{
+	overflow: hidden;
+}
+.item-records-tabs-winner-content-avatar{
+	float: left;
+	width: 48px;
+	height: 48px;
+	margin-right: 10px;
+}
+.item-records-tabs-winner-content-avatar img{
+	width: 100%;
+	height: 100%;
+	border: 1px solid #e7e7e7;
+	border-radius: 50%;
+	box-sizing: border-box;
+}
+.item-records-tabs-winner-content-info{
+	float: left;
+}
+.item-records-tabs-winner-content-info>div{
+	font-size: 12px;
+	line-height: 16px;
+	overflow: hidden;
+	white-space: nowrap;
+	text-overflow: ellipsis;
+}
+.item-records-tabs-winner-content-info-number>span{
+	color: #2894FF;
+}
+.item-records-tabs-winner-content-info-code>span{
+	color: #2894FF;
+}
+
+
