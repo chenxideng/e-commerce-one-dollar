@@ -30,8 +30,8 @@
             	<li order="10"><a href="javascript:;">全部商品<b></b></a></li>
        	 	    <li order="10" class="current"><a href="javascript:;">即将揭晓<b></b></a></li>
                 <li order="20"><a href="javascript:;">人气<b></b></a></li>
-                <li order="40"><a href="javascript:;">最新<b></b></a></li>
-                <li order="50" type="price"><a href="javascript:;">价格<em></em><s></s><b></b></a></li>
+                <li order="50"><a href="javascript:;">高价<s></s><b></b></a></li>
+                <li order="60" type="price"><a href="javascript:;">低价<em></em><b></b></a></li>
                 <!--
                 <li order="">
                     <a href="javascript:;">商品分类<s class="arrowUp"></s></a>
@@ -48,16 +48,16 @@
         </div>
 
 		<div class="page-glist-nav-category" id="page-glist-nav-category">
-		<ul>
-			{wc:getlist sql="select * from `@#_category` where `model`='1'"}
-			{wc:loop $data $categoryx}
-		    <li data-id="14">
-		      	<a id="{wc:$categoryx['cateid']}" href="javascript:;">{wc:$categoryx['name']}</a>
-		    </li>
-		    {wc:loop:end}
-			{wc:getlist:end}
-        </ul>
-	</div>
+			<ul>
+				{wc:getlist sql="select * from `@#_category` where `model`='1'"}
+				{wc:loop $data $categoryx}
+			    <li data-id="{wc:$categoryx['cateid']}">
+			      	<a id="{wc:$categoryx['cateid']}" href="javascript:;">{wc:$categoryx['name']}</a>
+			    </li>
+			    {wc:loop:end}
+				{wc:getlist:end}
+	        </ul>
+		</div>
 
         <!-- 列表 -->
         <div class="goodsList">
@@ -98,7 +98,7 @@ function glist_json(parm){
 				ul+='<span id="'+data[i].id+'" class="z-Limg"><img src="{G_UPLOAD_PATH}/'+data[i].thumb+'"></span>';
 				ul+='<div class="goodsListR">';
 				ul+='<h2 id="'+data[i].id+'">(第'+data[i].qishu+'期) '+data[i].title+'</h2>';
-				ul+='<p class="price" style="color: #666;line-height:1.4rem;font-size:0.75rem;">价值：<em>￥'+data[i].money+'</em></p>';
+				ul+='<p class="price" style="color: #999;line-height:1.4rem;font-size:0.75rem;">价值：<em>￥'+data[i].money+'</em></p>';
 				ul+='<div class="pRate">';
 				ul+='<div class="Progress-bar" id="'+data[i].id+'">';				
 				ul+='<p class="u-progress"><span class="pgbar" style="width:'+(data[i].canyurenshu / data[i].zongrenshu)*100+'%;"><span class="pging"></span></span></p>';
@@ -129,7 +129,7 @@ function glist_json(parm){
 }
 $(document).ready(function(){
 	//即将揭晓,人气,最新,价格	
-	$("#divGoodsNav li:not(:last)").click(function(){
+	$("#divGoodsNav li").click(function(){
 		var l=$(this).index();
 		$("#divGoodsNav li").removeClass().eq(l).addClass('current');
 		var parm=$("#divGoodsNav li").eq(l).attr('order');
@@ -138,39 +138,25 @@ $(document).ready(function(){
 		var glist=glist_json("list/"+parm);
 	});
 	
-	//商品分类
-	var dl=$("#divGoodsNav dl"),
-		last=$("#divGoodsNav li:last"),
-		first=$("#divGoodsNav dd:first");
-	$("#divGoodsNav li:last a:first").click(function(){
-		if(dl.css("display")=='none'){
-			dl.show();
-			last.addClass("gSort");
-			first.addClass("sOrange");			
-		}else{
-			dl.hide();
-			last.removeClass("gSort");
-			first.removeClass("sOrange");
+	var cataMenuItemList = $('#page-glist-nav-category>ul>li');
+	cataMenuItemList.on('click', function() {
+		if (!$(this).hasClass('active')) {
+			var cataId = $(this).attr('data-id');
+			var parm = $('#page-glist-nav-filter>ul>li').find('.active').attr('data-order');
+			cataMenuItemList.removeClass('active');
+			$(this).addClass('active');
+			if (cataId) {
+				$("#urladdress").val(cataId + '/'+parm);
+				$(".goodsList ul").remove();
+				$("#divGoodsLoading").css('display','block');
+				glist_json(cataId + '/' + parm);
+			} else{
+				$("#urladdress").val("list/" + parm);
+				$(".goodsList ul").remove();
+				$("#divGoodsLoading").css('display','block');
+				glist_json("list/" + parm);
+			}
 		}
-	});
-	$("#divGoodsNav  dd").click(function(){
-		var s=$(this).index();
-		var t=$("#divGoodsNav .gSort dd a").eq(s).html();
-		var id=$("#divGoodsNav .gSort dd a").eq(s).attr('id');
-		$("#divGoodsNav .gSort a:first").html(t+'<s class="arrowUp"></s>');
-		var l=$("#divGoodsNav .current").index(),
-			parm=$("#divGoodsNav li").eq(l).attr('order');
-		if(id){			
-			$("#divGoodsLoading").css('display','block');
-			$(".goodsList ul").remove();
-			glist_json(id+'/'+parm);
-		}else{
-			glist_json("list/"+parm);
-			$(".goodsList ul").remove();
-		}	
-		dl.hide();
-		last.removeClass("gSort");
-		first.removeClass("sOrange");
 	});
 	//加载更多
 	$("#btnLoadMore").click(function(){		
