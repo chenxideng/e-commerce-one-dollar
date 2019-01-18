@@ -207,12 +207,13 @@
 }
 .goodsList {
 	clear:both;
-	width:100%;
+	width:77%;
 	margin:0 auto;
 	overflow:hidden;
+	padding-left:23%;
 }
 .goodsList ul {
-	padding:15px 8px;
+	padding:10px 8px;
 	border-top:#eee 1px solid;
 	position:relative;
 	overflow:hidden;
@@ -246,15 +247,22 @@
 	margin-left:90px;
 }
 .goodsList .goodsListR h2 {
-	display:block;
+	display:-webkit-box;
 	color:#090909;
 	line-height:18px;
 	text-align:left;
-	font-size:14px;
+	word-break:break-all;
+	text-overflow:ellipsis;
+	font-size:0.8rem;
+	-webkit-box-orient:vertical;
+	-webkit-line-clamp:2;
+	overflow:hidden;
+	overflow-x:hidden;
+	overflow-y:hidden;
 }
 .goodsList .goodsListR .pRate {
 	height:32px;
-	margin-top:8px;
+	margin-top:4px;
 	position:relative;
 	margin-right:47px;
 }
@@ -268,11 +276,11 @@
 }
 .goodsList .goodsListR a.add {
 	display:block;
-	width:35px;
-	height:32px;
+	width:33px;
+	height:33px;
 	position:absolute;
 	right:-47px;
-	top:0;
+	top:-14px;
 	background-color:#f60;
 	border-radius:20px;
 }
@@ -281,7 +289,7 @@
 	background-position:-58px -29px;
 	width:22px;
 	height:22px;
-	margin:5px 0 0 5px;
+	margin:5px 0 0 3px;
 }
 .goodsList .goodsListR a.gray {
 	background:#cecece;
@@ -1293,6 +1301,69 @@
 	color: #2894FF;
 }
 .item-records-tabs-winner-content-info-code>span{
+	color: #2894FF;
+}
+
+
+.page-glist-nav-category{
+	position: absolute;
+	left: 0;
+	width: 23%;
+	height: 100%;
+	overflow-y: auto;
+	background-color: #f5f5f5;
+	z-index: 1;
+}
+.page-glist-nav-category>ul>li{
+	font-size: 0.8rem;
+	text-align: center;
+	padding: 1.2rem 0;
+	color: #999;
+}
+.page-glist-nav-category>ul>li>a{
+	font-size: 0.8rem;
+	text-align: center;
+	padding: 1.2rem 0;
+	color: #999;
+}
+.page-glist-nav-category>ul>li.active{
+	background-color: white;
+}
+.page-glist-nav-category>ul>li.active span{
+	display: block;
+	color: #2894FF;
+	border-left: 0.3rem solid #2894FF;
+}
+.page-glist-nav-category-2{
+	position: fixed;
+	top: 40px;
+	left: 0;
+	width: 4.8rem;
+	height: calc(100% - 88px);
+	overflow-x: hidden;
+	overflow-y: scroll;
+	background-color: #f5f5f5;
+	z-index: 1;
+}
+.page-glist-nav-category-2::-webkit-scrollbar{
+	width: 0;
+	height: 0;
+}
+.page-glist-nav-category-2>ul>li{
+	display: inline-block;
+	font-size: 1.2rem;
+	text-align: center;
+	padding: 1.2rem;
+	color: #999;
+}
+.page-glist-nav-category-2>ul>li>span{
+	display: block;
+	width: 2.4rem;
+}
+.page-glist-nav-category-2>ul>li.active{
+	background-color: white;
+}
+.page-glist-nav-category-2>ul>li.active span{
 	color: #2894FF;
 }
 

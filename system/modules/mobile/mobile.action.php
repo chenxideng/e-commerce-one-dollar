@@ -400,6 +400,14 @@ class mobile extends base {
 		  $itemxq=1;
 		}
 
+		foreach($itemlist as $history){
+			$shop.=$history['id'].',';
+		}
+		$id=trim($shop,',');
+		$gorecode_lists = $this->db->GetList("select * from `@#_member_go_record` where `shopid` IN ($id) and huode!=0 ORDER BY id DESC");
+
+		$cords=$this->db->GetList("select * from `@#_member_go_record` where `shopid`='$itemid'");
+
 		include templates("mobile/index","item");
 	}
 

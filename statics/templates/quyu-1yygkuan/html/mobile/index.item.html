@@ -53,7 +53,7 @@
                 </div>
         	    <div class="pResultsR">
                     <div class="g-snav">
-                        <div class="g-snav-lst">总共{wc:fun:_cfg('web_name_two')}<br><dd><b class="orange">{wc:$gorecode['gonumber']}</b><br>人次</dd></div>
+                        <div class="g-snav-lst">总共{wc:fun:_cfg('web_name_two')}<br><dd><b class="orange">{wc:$gorecode['gonumber']}</b><br>人</dd></div>
                         <div class="g-snav-lst">揭晓时间<br><dd class="gray9"><span>{wc:fun:microt($item['q_end_time'])}</span></dd></div>
                         <div class="g-snav-lst">{wc:fun:_cfg('web_name_two')}时间<br><dd class="gray9"><span>{wc:fun:microt($gorecode['time'])}</span></dd></div>
                     </div>
@@ -143,7 +143,6 @@
         <!-- 参与记录，商品详细，晒单导航 -->
         <div class="joinAndGet">
             <!-- 上期获得者 -->
-            
             {wc:if $item['q_end_time'] =='' and $item['qishu']>1}
             <ul id="prevPeriod" class="m-round" codeid="{wc:$gorecode['shopid']}" uweb="{wc:$gorecode['uid']}">
                 <li class="fl"><s></s><img src="{G_TEMPLATES_IMAGE}/mobile/loading.gif" src2="{G_UPLOAD_PATH}/{wc:fun:get_user_key($itemlist[0]['q_uid'],'img')}"/></li>
@@ -377,15 +376,11 @@
                 var url = $("#urladdress").val(),
                     page = $("#pagenum").val();
                 init_json(url + '/10/' + page);
-
             }
-
-            
         });
 
         //切换记录面板
         changeRecordTab();
-        
         $('.llg').click(function () {
             alert(1);
         });

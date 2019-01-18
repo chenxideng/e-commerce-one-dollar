@@ -54,7 +54,7 @@
 		    <h3>本期商品您总共拥有<em class="orange">{wc:$count}</em>个{wc:fun:_cfg('web_name_two')}码</h3>
 		    <ul>
 			{wc:loop $itemlist $val}
-			    <li><p class="gray9">{wc:fun:microt($val['timego'])}<span>{wc:$val['gonumber']}人次</span></p><b>{wc:fun:yunma($val['goucode'],"b")}</b></li>
+			    <li><p class="gray9">{wc:fun:microt($val['timego'])}<span>{wc:$val['gonumber']}人次</span></p><li>{wc:fun:yunma($val['goucode'],"b")}</li></li>
 			{wc:loop:end}
 		    </ul>
 	    </article>

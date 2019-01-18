@@ -1,3 +1,34 @@
+
+$(".tags li").on("click",function(){
+    var id = $(this).data("id");
+    var num = $(this).data("val");
+    $("#txtNum" + id).val(num);
+    $("#shuliang" + id).val(num);
+    $("#price" + id).text(num);
+    $("#arial" + id).text(num);
+    $("#orange" + id).text("￥"+num);
+    var a = $("#cartBody");
+    var q = 0;
+    var r = 0;
+    $("input:text[name=num]", a).each(function(s) {
+         var t = parseInt($(this).val());
+         var ss = parseInt($(this).siblings('input').val());
+         if (!isNaN(t)) {
+             r++;
+             q += t * ss;
+         }
+    });
+    $("#total").text(q);
+    $(this).parent().parent().prev().find(".z-jian").trigger("click");
+    setTimeout(function(self){
+      return function(){
+        $(self).parent().parent().prev().find(".z-jia").trigger("click");
+      }
+    }(this), 100);
+});
+
+
+
 $(function() {
     var a = $("#cartBody");	
     var c = $("#divNone");
@@ -24,9 +55,10 @@ $(function() {
             var r = 0;
             $("input:text[name=num]", a).each(function(s) {
                 var t = parseInt($(this).val());
+                var ss = parseInt($(this).siblings('input').val());
                 if (!isNaN(t)) {
                     r++;
-                    q += t
+                    q += t * ss;
                 }
             });
             if (r > 0) {
@@ -44,6 +76,9 @@ $(function() {
             var v = t.replace("txtNum", "");
             var q = z.next().next();
             var r = parseInt(z.next().next().next().val());
+
+            var yjg = z.next().next().next().next().val();
+
             var s, y, w = /^[1-9]{1}\d{0,6}$/;
             var u;
             o = t;
@@ -101,7 +136,7 @@ $(function() {
                 q.val(q.next().next().val())
             }
         };
-        var j = function(q, t, r) {
+        var j = function(q, t, r, yjg) {
 		 
             var s = function(w) {
                 if (w.code == 1) {
@@ -110,7 +145,9 @@ $(function() {
                     e("本期商品已购买光了", q, -75, u)
                 } else {
                     if (w.code == 0) {
-                        q.parent().prev().html('总共购买：<em class="arial">' + r + '</em>人次/<em class="orange arial">￥' + r + ".00</em>")
+                        //q.parent().prev().html('总共购买：<em class="arial">' + r + '</em>人次/<em class="orange arial">￥' + r + ".00</em>")
+                        var ids = q.parent().prev().find(".proce").attr("ids");
+                        console.log("xxxxxxxxxxxxx==>",r ,":xxxxxxxxxxxxx==>",yjg);
                     }
                 }
             };
@@ -121,13 +158,18 @@ $(function() {
             var s = u.replace("txtNum", "");
             var r = parseInt(v.next().next().next().val());
             var q = v.next().next();
+            
+            var yjg = v.attr('yunjiage');
+            console.log(v.next().next().next().next().attr("class"))
+
             var t = parseInt(q.val()) + w;
             if (t > 0 && t <= r) {
                 i(v, t, r);
                 q.val(t);
                 v.val(t);
                 p(t, v);
-                j(v, s, t);
+                //j(v, s, t);
+                j(v, s, t, yjg);
                 m()
             }
         };

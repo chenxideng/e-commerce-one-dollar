@@ -18,10 +18,7 @@
 <div class="h5-1yyg-v1" id="loadingPicBlock">
     
 <!-- 栏目页面顶部 -->
-
-
 <!-- 内页顶部 -->
-
     <header class="g-header">
         <div class="head-l">
 	        <a href="javascript:;" onclick="history.go(-1)" class="z-HReturn"><img style="width:20px;padding-top:4px;" src="{G_TEMPLATES_IMAGE}/mobile/go_back.png"></a>
@@ -50,19 +47,29 @@
 							<img src="{G_TEMPLATES_IMAGE}/loading.gif" src2="{G_UPLOAD_PATH}/{wc:$val['thumb']}" border="0" alt=""/>
 						</a>
 						<div class="u-Cart-r">
-							<p class="z-Cart-tt"><a href="{WEB_PATH}/mobile/mobile/item/{wc:$val['id']}" class="gray6">(第{wc:$val['qishu']}期){wc:$val['title']}</a></p>
+							<p class="z-Cart-tt"><a href="{WEB_PATH}/mobile/mobile/item/{wc:$val['id']}" class="gray6">(第{wc:$val['qishu']}期) {wc:$val['title']}</a></p>
 							<ins class="z-promo gray9">剩余<em class="arial">{wc:$val['zongrenshu']-$val['canyurenshu']}</em>人次  </ins>
-							<p class="gray9">总共{wc:fun:_cfg('web_name_two')}：<em class="arial">{wc:$Mcartlist[$val['id']]['num']}</em>人次/<em class="orange arial">￥{wc:$Mcartlist[$val['id']]['money']}.00</em></p>
+							<!--<p class="gray9">总共{wc:fun:_cfg('web_name_two')}：<em class="arial">{wc:$Mcartlist[$val['id']]['num']}</em>人次/<em class="orange arial">￥{wc:$Mcartlist[$val['id']]['money']}.00</em></p>-->
 							<p class="f-Cart-Other">
+								<input type="hidden" value="1.00" class="yunjiage{wc:$val['id']}">
 								<a href="javascript:;" class="fr z-del" name="delLink" cid="{wc:$val['id']}"></a>
 								<a href="javascript:;" class="fl z-jian {wc:if $Mcartlist[$val['id']]['num']==1}z-jiandis{wc:if:end}">-</a>
-								
 								<input id="txtNum{wc:$val['id']}" name="num" type="text" maxlength="7" yunjiage = "{wc:$val['yunjiage']}" value="{wc:$Mcartlist[$val['id']]['num']}" class="fl z-amount" />
 								<a href="javascript:;" class="fl z-jia {wc:if $Mcartlist[$val['id']]['num']==$val['zongrenshu']}z-jiadis{wc:if:end}">+</a>
-								<input type="hidden" value="{wc:$Mcartlist[$val['id']]['num']}" />
+								<input id="shuliang{wc:$val['id']}" type="hidden" value="{wc:$Mcartlist[$val['id']]['num']}">
 								<input type="hidden" value="{wc:$val['zongrenshu']-$val['canyurenshu']}" />
+								<input type="hidden" value="1.00" class="yunjiage{wc:$val['id']}"/>
 							</p>
 						</div>
+						<div style="float: left;color: #333;text-align: center;line-height: 28px;font-size: 14px;position: relative;margin-bottom: 5px;width: 100%;padding-left: 90px;margin-top: 6px;">
+                        <ul class="tags" style="margin: 0 auto;width: 100%;">
+                            <li id="Li1" data-id="{wc:$val['id']}" data-val="10">10</li>
+                            <li id="Li2" data-id="{wc:$val['id']}" data-val="50">50</li>
+                            <li id="Li3" data-id="{wc:$val['id']}" data-val="100">100</li>
+                            <li id="Li4" data-id="{wc:$val['id']}" data-val="200">200</li>
+                            <li id="Li5" data-id="{wc:$val['id']}" data-val="{wc:$val['zongrenshu']-$val['canyurenshu']}">包尾</li>
+                        </ul>												
+                    </div>
 					</li>
 				{wc:loop:end}
 				
