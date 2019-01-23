@@ -41,6 +41,7 @@ tbody tr{ line-height:30px; height:30px;}
             <th align="center">购买日期</th>
             <th align="center">中奖</th>
             <th align="center">订单状态</th>
+            <th align="center">奖品配置</th>
             <th align="center">管理</th>
 		</tr>
     </thead>
@@ -58,6 +59,8 @@ tbody tr{ line-height:30px; height:30px;}
                 <td align="center"><?php echo date("Y-m-d H:i:s",$v['time']);?></td>
                  <td align="center"><?php  echo $v['huode'] ? "中奖" : '未中奖';?></td>
                 <td align="center"><?php echo $v['status'];?></td>
+                <td align="center"><?php 
+                if($v['award_type']=="tomoney"){echo "奖品变现";} elseif($v['award_type']=="togoods") {echo "领取奖品";}?></td>
                 <td align="center"><a href="<?php echo G_MODULE_PATH;?>/dingdan/get_dingdan/<?php echo $v['id']; ?>">详细</a></td>
             </tr>
             <?php } ?>

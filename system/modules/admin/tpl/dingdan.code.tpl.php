@@ -49,6 +49,8 @@ tr{height:40px;line-height:40px}
 			<li><b class="api_b">商品价格：</b>500.00	</li>
 			<li><b class="api_b"><font color="#ff0000">中奖人</font></b><?php echo $qishu['ren']; ?></li>
 			<li><b class="api_b"><font color="#ff0000">中奖云购码</font></b><?php echo $qishu['ma']; ?></li>	
+			<li><b class="api_b"><font color="#ff0000">奖品配置</font></b><?php 
+                if($record['award_type']=="tomoney"){echo "奖品变现";} elseif($record['award_type']=="togoods") {echo "领取奖品";}?></li>
 			<div class="bk10"></div>
 			<li><b class="api_b">购买次数：</b><?php echo $record['gonumber']; ?>人次</li>
 			<li class="yun_ma"><b class="api_b">获得云购码：</b><br/>			

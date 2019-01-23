@@ -53,18 +53,7 @@
     </section>
     <section class="clearfix g-Cart">
 	    <article class="clearfix m-round g-pay-ment">
-		    <ul id="ulPayway"><!--
-			{wc:if $fufen_dikou >= $MoenyCount}
-			    <li class="gray9 z-pay-ff z-pay-grayC">
-				<i id="spPoints" class="z-pay-ment" sel="0"></i>
-				<span>您可以使用福分付款（您的福分：{wc:$member['score']}）</span>
-				</li>
-			{wc:else}
-			     <li class="gray6 z-pay-ff z-pay-grayC">
-				<span>您的福分不足（您的福分：{wc:$member['score']}）</span>
-				</li>
-			{wc:if:end}-->
-			
+		    <ul id="ulPayway">
 			{wc:if $Money >= $MoenyCount}			
 				<li class="gray9 z-pay-ye z-pay-grayC"> 
 				<i id="spBalance" class="z-pay-ment" sel="0"></i>
@@ -86,6 +75,21 @@
 		    </ul>
 		    </ul>
 	    </article>
+	    <article id="ship-details" style="display:none;" class="mt10 m-round g-pay-ment">
+			<li class="gray9 z-pay-ff z-pay-grayC">
+				<i id="address"></i>
+				<span>确认收货地址</span><a href="{WEB_PATH}/mobile/home/address" class="fr orange arial">去修改</a>
+				<li><span class="gray9">姓名: </span>{wc:$member['real_name']}</li>
+				<li><span class="gray9">电话: </span>{wc:$member['mobile']}</li>
+				<li><span class="gray9">邮寄地址: </span>{wc:$member['ship_addr']}</li>
+			</li>
+		</article>
+		<article id="award-details" style="display:none;" class="mt10 m-round g-pay-ment">
+			<li class="gray9 z-pay-ff z-pay-grayC">
+				<i id="address"></i>
+				<span>奖品变现金额: {wc:$MoenyCount} * 0.9</span>
+			</li>
+		</article>
 	    <div class="g-Total-bt">
 		    <a id="btnPay" href="javascript:;" class="orgBtn">确认支付</a>
 	    </div>

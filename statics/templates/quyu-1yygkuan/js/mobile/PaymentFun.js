@@ -11,7 +11,7 @@ $(function() {
         var h = null;
         var m = $("#bankList");
         var shopnum = parseInt($("#shopnum").val());		 
-        var r = "商品变现";
+        var r = "奖品变现";
         //var g = parseInt(t / 100) > x ? x: parseInt(t / 100);
         var g = ffdk > x ? x: ffdk;
         var w = 0;
@@ -60,13 +60,13 @@ $(function() {
         var k = function(y) {
             e = y;			 
             if (y > 0) {
-                h.html('<s class="z-arrow"></s>奖品配置: ' + (r == "变现" ? "变现": '<b class="z-mlr">' + r + "</b>"));
+                h.html('<s class="z-arrow"></s>奖品配置: ' + (r == "奖品变现" ? "奖品变现": '<b class="z-mlr">' + r + "</b>"));
                 h.removeClass("z-pay-grayC").nextAll().show();
                 o = true
 				checkpay='money'
-				if(r=='商品变现'){
+				if(r=='奖品变现'){
 				  banktype='tomoney';
-				}else if(r=='领取商品'){
+				}else if(r=='领取奖品'){
 				  banktype='togoods';
                 }
 				
@@ -154,7 +154,7 @@ $(function() {
                         }
                     }
                 })
-            } else {			 
+            } else {	 
                 z.click(function() {				 
                     v = y;
                     r = z.text();
@@ -162,23 +162,26 @@ $(function() {
                     z.siblings().each(function() {
                         $(this).children("i").attr("class", "z-bank-Round")
                     });
-                    h.html('<s class="z-arrow"></s>选择<b class="z-mlr">' + r + "</b>")
-					checkpay='money'
+                    h.html('<s class="z-arrow"></s>选择<b class="z-mlr">' + r + "</b>");
 					//banktype=r;
-				if(r=='商品变现'){
-                  banktype='tomoney';
-                }else if(r=='领取商品'){
-                  banktype='togoods';
-                }
+    				if(r=='奖品变现'){
+                      banktype='tomoney';
+                      document.getElementById("ship-details").style.display = "none";
+                      document.getElementById("award-details").style.display = "block";
+                    }else if(r=='领取奖品'){
+                      banktype='togoods';
+                      document.getElementById("award-details").style.display = "none";
+                      document.getElementById("ship-details").style.display = "block";
+                    }
                 })
             }
         });		 
-        if (e > 0) {		 
+        if (e > 0) {	 
             h.removeClass("z-pay-grayC").html('<s class="z-arrow"></s>选择<b class="z-mlr">' + r + "</b>支付" + ((g > 0 || w > 0) ? "剩余": "") + '<em class="orange">' + e + ".00</em>元").nextAll().show();
             o = true
 			banktype='CMBCHINA-WAP';
 			checkpay='bank'
-        } else {		 
+        } else {		   
             h.addClass("z-pay-grayC").nextAll().hide();
             o = false
         }
