@@ -79,8 +79,8 @@
 			<li class="gray9 z-pay-ff z-pay-grayC">
 				<i id="address"></i>
 				<span>确认收货地址</span><a href="{WEB_PATH}/mobile/home/address" class="fr orange arial">去修改</a>
-				<li><span class="gray9">姓名: </span>{wc:$member['real_name']}</li>
-				<li><span class="gray9">电话: </span>{wc:$member['mobile']}</li>
+				<li><span class="gray9">姓名: </span>{wc:fun:get_user_real_name($member['uid'])}</li>
+				<li><span class="gray9">电话: </span>{wc:fun:get_user_real_phone($member['uid'])}</li>
 				<li><span class="gray9">邮寄地址: </span>{wc:$member['ship_addr']}</li>
 			</li>
 		</article>

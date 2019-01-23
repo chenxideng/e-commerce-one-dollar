@@ -8,25 +8,25 @@
 */
 function get_user_name($uid='',$type='username',$key='sub'){
 	if(is_array($uid)){			
-			if(isset($uid['username']) && !empty($uid['username'])){
-				return $uid['username'];
+		if(isset($uid['username']) && !empty($uid['username'])){
+			return $uid['username'];
+		}
+		if(isset($uid['email']) && !empty($uid['email'])){
+			if($key=='sub'){
+				$email = explode('@',$uid['email']);				
+				return $uid['email'] = substr($uid['email'],0,2).'*'.$email[1];
+			}else{
+				return $uid['email'];
 			}
-			if(isset($uid['email']) && !empty($uid['email'])){
-				if($key=='sub'){
-					$email = explode('@',$uid['email']);				
-					return $uid['email'] = substr($uid['email'],0,2).'*'.$email[1];
-				}else{
-					return $uid['email'];
-				}
+		}
+		if(isset($uid['mobile']) && !empty($uid['mobile'])){	
+			if($key=='sub'){
+				return $uid['mobile'] = substr($uid['mobile'],0,3).'****'.substr($uid['mobile'],7,4);
+			}else{
+				return $uid['mobile'];
 			}
-			if(isset($uid['mobile']) && !empty($uid['mobile'])){	
-				if($key=='sub'){
-					return $uid['mobile'] = substr($uid['mobile'],0,3).'****'.substr($uid['mobile'],7,4);
-				}else{
-					return $uid['mobile'];
-				}
-			}
-			return '';
+		}
+		return '';
 	}else{		
 		$db = System::load_sys_class("model");
 		$uid = intval($uid);
@@ -55,6 +55,26 @@ function get_user_name($uid='',$type='username',$key='sub'){
 		}
 		return '';
 	}
+}
+
+function get_user_real_name($uid=''){
+	$db = System::load_sys_class("model");
+	$uid = intval($uid);
+	$info = $db->GetOne("select real_name from `@#_member` where `uid` = '$uid' limit 1");
+	if(isset($info['real_name']) && !empty($info['real_name'])){
+		return $info['real_name'] = '*'. mb_substr(trim($info['real_name']),1, 2,"utf-8");
+	} 
+	return '';
+}
+
+function get_user_real_phone($uid=''){
+	$db = System::load_sys_class("model");
+	$uid = intval($uid);
+	$info = $db->GetOne("select mobile from `@#_member` where `uid` = '$uid' limit 1");
+	if(isset($info['mobile']) && !empty($info['mobile'])){
+		return $info['real_name'] = substr($info['mobile'],0,3).'****'.substr($info['mobile'],7,4);
+	} 
+	return '';
 }
 
 /*
