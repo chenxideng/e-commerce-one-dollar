@@ -39,7 +39,7 @@ class pay {
 
 		$this->fukuan_type=$fukuan_type;
 		if($fukuan_type=='go_record'){
-			return $this->go_record();
+			return $this->go_record($pay_type);
 		}
 		if($fukuan_type=='addmoney_record'){
 			return $this->addmoney_record($addmoney);
@@ -48,7 +48,7 @@ class pay {
 	}
 
 	//买商品
-	private function go_record(){
+	private function go_record($pay_type){
 
 		if(is_array($this->scookie)){
 			$Cartlist = $this->scookie;
@@ -256,11 +256,11 @@ class pay {
 	/**
 	*	开始支付
 	**/
-	public function go_pay($pay_checkbox){
+	public function go_pay($pay_checkbox, $pay_type){
 
 		if($this->members['money'] >= $this->MoenyCount){
 			$uid=$this->members['uid'];
-			$pay_1 =  $this->pay_bag();
+			$pay_1 =  $this->pay_bag($pay_type);
 			if(!$pay_1){return $pay_1;}
 			$dingdancode=$this->dingdancode;
 			$pay_2 = pay_go_fund($this->goods_count_num);
@@ -288,7 +288,7 @@ class pay {
 
 
 	//账户里支付
-	private function pay_bag(){
+	private function pay_bag($pay_type){
 		$time=time();
 		$uid=$this->members['uid'];
 		$fufen = System::load_app_config("user_fufen",'','member');
@@ -346,7 +346,7 @@ class pay {
 		}
 
 		$dingdancode=$this->dingdancode;
-		$query_6 = $this->db->Query("UPDATE `@#_member_go_record` SET `status`='已付款,未发货,未完成' WHERE `code`='$dingdancode' and `uid` = '$uid'");
+		$query_6 = $this->db->Query("UPDATE `@#_member_go_record` SET `status`='已付款,未发货,未完成' ,`award_type`='$pay_type' WHERE `code`='$dingdancode' and `uid` = '$uid'");
 		$query_7 = $this->dingdan_query;
 		$query_8 = $this->db->Query("UPDATE `@#_caches` SET `value`=`value` + $goods_count_num WHERE `key`='goods_count_num'");
 		$this->goods_count_num = $goods_count_num;

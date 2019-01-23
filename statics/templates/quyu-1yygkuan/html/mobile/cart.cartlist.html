@@ -61,7 +61,7 @@
 								<input type="hidden" value="1.00" class="yunjiage{wc:$val['id']}"/>
 							</p>
 						</div>
-						<div style="float: left;color: #333;text-align: center;line-height: 28px;font-size: 14px;position: relative;margin-bottom: 5px;width: 100%;padding-left: 90px;margin-top: 6px;">
+						<div style="overflow:hidden;float: left;color: #333;text-align: center;line-height: 28px;font-size: 14px;position: relative;margin-bottom: 5px;width: 100%;padding-left: 90px;margin-top: 6px;">
                         <ul class="tags" style="margin: 0 auto;width: 100%;">
                             <li id="Li1" data-id="{wc:$val['id']}" data-val="10">10</li>
                             <li id="Li2" data-id="{wc:$val['id']}" data-val="50">50</li>
@@ -82,13 +82,14 @@
 			<a href="javascript:;" class="orgBtn">结 算</a>
 		</div>
 	{wc:if:end}
-	    <div id="divNone" class="haveNot z-minheight" style="display:none"><s></s><p>抱歉，您的购物车没有商品记录！</p>
+	    <div id="divNone" class="haveNot z-minheight" style="display:none"><s></s><p>主银，您的购物车还是空的哦</p>
+	    	<a href="/">
+                <p class="guangguang">去逛逛</p>
+            </a>
 		</div>
 		
     </section>
- 
-    
-{wc:templates "mobile/index","footer"}
+ {wc:templates "mobile/index","footer"}
 <script language="javascript" type="text/javascript">
   var Path = new Object();
   Path.Skin="{G_TEMPLATES_STYLE}";  

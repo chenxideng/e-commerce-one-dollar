@@ -142,7 +142,6 @@ class cart extends base {
 		  header("location: ".WEB_PATH."/mobile/user/login");
 		  exit;
 		}
-
 		session_start();
 
 
@@ -153,7 +152,6 @@ class cart extends base {
 		 $submitcode1=$this->segment(8);   //获取SESSION
 
 		 $uid = $this->userinfo['uid'];
-
 
 		if(!empty($submitcode1)) {
 			if(isset($_SESSION['submitcode'])){
@@ -207,19 +205,20 @@ class cart extends base {
 			start
 		*************/
 
-
 		$pay=System::load_app_class('pay','pay');
  //修改支付每次都要使用福分问题 lq 2014-12-01
         //$pay->fufen = $fufen;
 		$pay->fufen = $checkpay=='fufen'?$fufen:0;
 		$pay->pay_type_bank = $pay_type_bank;
+
 		$ok = $pay->init($uid,$pay_type_id,'go_record');	//云购商品
 		if($ok != 'ok'){
 			_setcookie('Cartlist',NULL);
 			_messagemobile("购物车没有商品请<a href='".WEB_PATH."/mobile/cart/cartlist' style='color:#22AAFF'>返回购物车</a>查看");
 		}
 
-		$check = $pay->go_pay($pay_checkbox);
+		$pay_type = $pay_type_id;
+		$check = $pay->go_pay($pay_checkbox, $pay_type);
 		if(!$check){
 			_messagemobile("订单添加失败,请<a href='".WEB_PATH."/mobile/cart/cartlist' style='color:#22AAFF'>返回购物车</a>查看");
 		}

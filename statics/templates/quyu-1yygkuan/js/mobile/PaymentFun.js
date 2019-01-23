@@ -11,13 +11,13 @@ $(function() {
         var h = null;
         var m = $("#bankList");
         var shopnum = parseInt($("#shopnum").val());		 
-        var r = "支付宝";
+        var r = "商品变现";
         //var g = parseInt(t / 100) > x ? x: parseInt(t / 100);
         var g = ffdk > x ? x: ffdk;
         var w = 0;
         var e = 0;
 		var checkpay='nosel';//选择支付方式
-		var banktype='nobank';
+		var banktype='tomoney';
 		 
         if (g < x) {		 
             var j = parseInt(d);			 
@@ -48,39 +48,36 @@ $(function() {
         var f = function(y) {
 		     
             w = y;
-            if (y > 0) {
-			 
+            //if (y > 0) {
                 p.parent().removeClass("z-pay-grayC");
                 p.attr("sel", "1").attr("class", "z-pay-mentsel").next("span").html('余额支付<em class="orange">' + y + ".00</em>元（账户余额：" + d + " 元）")
 				checkpay='money';
-				banktype='nobank';
-            } else {
-                p.attr("sel", "0").attr("class", "z-pay-ment").next("span").html('余额支付<em class="orange">0.00</em>元（账户余额：' + d + " 元）")
-            }
+				banktype='tomoney';
+            //} else {
+            //    p.attr("sel", "0").attr("class", "z-pay-ment").next("span").html('余额支付<em class="orange">0.00</em>元（账户余额：' + d + " 元）")
+            //}
         };
         var k = function(y) {
             e = y;			 
             if (y > 0) {
-                h.html('<s class="z-arrow"></s>选择' + (r == "网银" ? "网银": '<b class="z-mlr">' + r + "</b>") + "支付" + ((g > 0 || w > 0) ? "剩余": "") + '<em class="orange">' + e + ".00</em>元");
+                h.html('<s class="z-arrow"></s>奖品配置: ' + (r == "变现" ? "变现": '<b class="z-mlr">' + r + "</b>"));
                 h.removeClass("z-pay-grayC").nextAll().show();
                 o = true
-				checkpay='bank'
-				if(r=='易宝支付'){
-				  banktype='CCB-WAP';
-				}else if(r=='支付宝'){
-				  banktype='CMBCHINA-WAP';
-				}else if(r=='微信支付m'){
-				  banktype='ICBC-WAP';
-				}
+				checkpay='money'
+				if(r=='商品变现'){
+				  banktype='tomoney';
+				}else if(r=='领取商品'){
+				  banktype='togoods';
+                }
 				
             } else {
-                h.addClass("z-pay-grayC").html('<s class="z-arrow"></s>选择网银支付').nextAll().hide();
+                h.addClass("z-pay-grayC").html('<s class="z-arrow"></s>奖品配置').nextAll().hide();
                 o = false
             }
         };
         if (ffdk > 0) {		 
             c.parent().click(function() {
-                k(0);
+                //k(0);
                 if (c.attr("sel") == 1) {
                     q(0);
                     n(x)
@@ -110,19 +107,19 @@ $(function() {
         }
         if (parseInt(d) > 0) {
             p.parent().click(function() {
-			 
                 k(0);
                 if (p.attr("sel") == 1) {
                     f(0);
                     l(x)
                 } else {
+                    // go here
                     var y = parseInt(d);
-                    if (y > 0) {
+                    //if (y > 0) {
                         f(y >= x ? x: y);
-                        l(y >= x ? 0 : x - y)
-                    } else {
+                    //    l(y >= x ? 0 : x - y)
+                    //} else {
                         l(x)
-                    }
+                    //}
                 }
             });
             var l = function(z) {
@@ -165,16 +162,14 @@ $(function() {
                     z.siblings().each(function() {
                         $(this).children("i").attr("class", "z-bank-Round")
                     });
-                    h.html('<s class="z-arrow"></s>选择<b class="z-mlr">' + r + "</b>支付" + ((g > 0 || w > 0) ? "剩余": "") + '<em class="orange">' + e + ".00</em>元")
-					checkpay='bank'
+                    h.html('<s class="z-arrow"></s>选择<b class="z-mlr">' + r + "</b>")
+					checkpay='money'
 					//banktype=r;
-				if(r=='易宝支付'){
-				  banktype='CCB-WAP';
-				}else if(r=='支付宝'){
-				  banktype='CMBCHINA-WAP';
-				}else if(r=='微信支付m'){
-				  banktype='ICBC-WAP';
-				}
+				if(r=='商品变现'){
+                  banktype='tomoney';
+                }else if(r=='领取商品'){
+                  banktype='togoods';
+                }
                 })
             }
         });		 
@@ -212,7 +207,7 @@ $(function() {
                 a = false;
                 s.unbind("click").addClass("dis");
 			    if (shopnum != -1) {
-					if (shopnum == 0) {					
+					if (shopnum == 0) {				
 						location.replace(Gobal.Webpath+"/mobile/cart/paysubmit/"+checkpay+"/"+banktype+"/"+x+"/"+t+"/"+submitcode)
 					} else {
 						if (shopnum == 1) {

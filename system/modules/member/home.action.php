@@ -586,6 +586,14 @@ class home extends base {
 		include templates("member","userrecharge");
 	}	
 
+	public function address(){
+		$member=$this->userinfo;
+		$uid = $member['uid'];
+		$title="收货地址";
+		$address = $this->db->GetOne("SELECT ship_addr FROM `@#_member` where `uid`='$uid'");	
+		include templates("member","useraddress");
+	}	
+
 	//圈子管理
 	public function joingroup(){
 		$member=$this->userinfo;
