@@ -79,6 +79,11 @@ function get_user_real_phone($uid=''){
 	return '';
 }
 
+function get_user_real_address($addr=''){
+	$real_addr = passport_decrypt($addr, KEY);
+	return $real_addr;
+}
+
 /*
 * 获取用户信息
 */
