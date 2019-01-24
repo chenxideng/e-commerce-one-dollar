@@ -62,7 +62,8 @@ function get_user_real_name($uid=''){
 	$uid = intval($uid);
 	$info = $db->GetOne("select real_name from `@#_member` where `uid` = '$uid' limit 1");
 	if(isset($info['real_name']) && !empty($info['real_name'])){
-		return $info['real_name'] = '*'. mb_substr(trim($info['real_name']),1, 2,"utf-8");
+		$real_name = passport_decrypt(trim($info['real_name']), KEY);
+		return $info['real_name'] = '*'. mb_substr(trim($real_name),1, 3,"utf-8");
 	} 
 	return '';
 }
@@ -70,9 +71,10 @@ function get_user_real_name($uid=''){
 function get_user_real_phone($uid=''){
 	$db = System::load_sys_class("model");
 	$uid = intval($uid);
-	$info = $db->GetOne("select mobile from `@#_member` where `uid` = '$uid' limit 1");
-	if(isset($info['mobile']) && !empty($info['mobile'])){
-		return $info['real_name'] = substr($info['mobile'],0,3).'****'.substr($info['mobile'],7,4);
+	$info = $db->GetOne("select real_phone from `@#_member` where `uid` = '$uid' limit 1");
+	if(isset($info['real_phone']) && !empty($info['real_phone'])){
+		$real_phone = passport_decrypt(trim($info['real_phone']), KEY);
+		return $info['real_phone'] = substr($real_phone,0,3).'****'.substr($real_phone,7,4);
 	} 
 	return '';
 }
@@ -201,8 +203,40 @@ function get_user_goods_num($uid=null,$sid=null){
 		$num+=$v['gonumber'];
 	}
 	return $num;
-	
 }
+
+function passport_encrypt($str,$key){
+    srand((double)microtime() * 1000000); 
+    $encrypt_key=md5(rand(0, 32000)); 
+    $ctr=0; 
+    $tmp=''; 
+    for($i=0;$i<strlen($str);$i++){ 
+        $ctr=$ctr==strlen($encrypt_key)?0:$ctr; 
+        $tmp.=$encrypt_key[$ctr].($str[$i] ^ $encrypt_key[$ctr++]); 
+    } 
+    return base64_encode(passport_key($tmp,$key)); 
+} 
+
+function passport_decrypt($str,$key){
+    $str=passport_key(base64_decode($str),$key); 
+    $tmp=''; 
+    for($i=0;$i<strlen($str);$i++){ 
+        $md5=$str[$i]; 
+        $tmp.=$str[++$i] ^ $md5; 
+    } 
+    return $tmp; 
+} 
+
+function passport_key($str,$encrypt_key){ 
+    $encrypt_key=md5($encrypt_key); 
+    $ctr=0; 
+    $tmp=''; 
+    for($i=0;$i<strlen($str);$i++){ 
+        $ctr=$ctr==strlen($encrypt_key)?0:$ctr; 
+        $tmp.=$str[$i] ^ $encrypt_key[$ctr++]; 
+    } 
+    return $tmp; 
+} 
 
 
 ?>

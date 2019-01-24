@@ -269,6 +269,15 @@ define('G_ADMIN_DIR',System::load_sys_config("system",'admindir'));
 define('WC_VERSION', System::load_sys_config("version",'version'));
 
 
+/**
+ * key
+ *
+ * @var string
+ *
+ */
+define('KEY', 'AsianArkHongKong');
+
+
 
 if(!is_php('5.3'))
 {
