@@ -50,6 +50,10 @@ function percent($p,$t){
 	if($p<=0){return false;}
 	return sprintf('%.2f%%',$p/$t*100);
 }
+function percent_to_int($p,$t){
+	if($p<=0){return false;}
+	return sprintf(round($p/$t*100)).'%';
+}
 function width($p,$t,$w){
 	if($p<=0){return false;}
 	return $p/$t*$w;

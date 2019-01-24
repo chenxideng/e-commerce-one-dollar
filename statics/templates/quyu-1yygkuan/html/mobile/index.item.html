@@ -103,7 +103,7 @@
 							<span class="pging"></span>
 						</span>
 					</p>
-                    <span class="pg-percent" style="left: {wc:fun:percent($item['canyurenshu'],$item['zongrenshu'])};">{wc:fun:percent($item['canyurenshu'],$item['zongrenshu'])}</span>
+                    <span class="pg-percent" style="left: {wc:fun:percent($item['canyurenshu'],$item['zongrenshu'])};">{wc:fun:percent_to_int($item['canyurenshu'],$item['zongrenshu'])}</span>
             
 					<ul class="Pro-bar-li">
 						<li class="P-bar01"><em>{wc:$item['canyurenshu']}</em>已参与</li>
@@ -388,7 +388,6 @@
 
 
     </script>
-<!--{wc:templates "mobile/index","footer"}-->
 <script language="javascript" type="text/javascript">
   var Path = new Object();
   Path.Skin="{G_TEMPLATES_STYLE}";  
