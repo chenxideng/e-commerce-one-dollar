@@ -275,8 +275,7 @@ define('WC_VERSION', System::load_sys_config("version",'version'));
  * @var string
  *
  */
-define('KEY', 'AsianArkHongKong');
-
+define('KEY1', 'AsianArkHongKong_NAME');
 
 
 if(!is_php('5.3'))
@@ -317,3 +316,21 @@ if(System::load_sys_config('system','gzip') && function_exists('ob_gzhandler')) 
 } else {	
 	ob_start();  //打开输出控制缓冲
 }
+
+
+/**
+ * key
+ *
+ * @var string
+ *
+ */
+define('KEY2', 'AsianArkHongKong_TEL');
+
+
+/**
+ * key
+ *
+ * @var string
+ *
+ */
+define('KEY3', 'AsianArkHongKong_ADDR');

@@ -481,6 +481,8 @@ a.z-Site {
 	background:#f60;
 	/*border-bottom:1px solid #e35b00;*/
 	position:relative;
+	color:white;
+	text-align:center;
 }
 .g-header h2 {
 	text-align:center;
@@ -1086,4 +1088,35 @@ div.pageDialog {
 
 .footerdi .f_personal i.cur {
     background-position: 0 -152px !important;
+}
+
+#page-header{
+	position: relative;
+	height: 40px;
+	text-align: center;
+	color: white;
+	background-color: #2894FF;
+}
+#page-header>a{
+	display: block;
+	width: 20px;
+	height: 20px;
+}
+#page-header>a>img{
+	width: 100%;
+	height: 100%;
+}
+#page-header-back{
+	position: absolute;
+	top: 10px;
+	left: 10px;
+}
+#page-header-home{
+	position: absolute;
+	top: 10px;
+	right: 10px;
+}
+#page-header-text{
+	font-size: 16px !important;
+	line-height: 40px;
 }

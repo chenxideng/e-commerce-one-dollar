@@ -62,7 +62,7 @@ function get_user_real_name($uid=''){
 	$uid = intval($uid);
 	$info = $db->GetOne("select real_name from `@#_member` where `uid` = '$uid' limit 1");
 	if(isset($info['real_name']) && !empty($info['real_name'])){
-		$real_name = passport_decrypt(trim($info['real_name']), KEY);
+		$real_name = passport_decrypt(trim($info['real_name']), KEY1);
 		return $info['real_name'] = '*'. mb_substr(trim($real_name),1, 3,"utf-8");
 	} 
 	return '';
@@ -73,14 +73,14 @@ function get_user_real_phone($uid=''){
 	$uid = intval($uid);
 	$info = $db->GetOne("select real_phone from `@#_member` where `uid` = '$uid' limit 1");
 	if(isset($info['real_phone']) && !empty($info['real_phone'])){
-		$real_phone = passport_decrypt(trim($info['real_phone']), KEY);
+		$real_phone = passport_decrypt(trim($info['real_phone']), KEY2);
 		return $info['real_phone'] = substr($real_phone,0,3).'****'.substr($real_phone,7,4);
 	} 
 	return '';
 }
 
 function get_user_real_address($addr=''){
-	$real_addr = passport_decrypt($addr, KEY);
+	$real_addr = passport_decrypt($addr, KEY3);
 	return $real_addr;
 }
 
