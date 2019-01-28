@@ -113,13 +113,57 @@ class home extends base {
 				_message("手机号错误;");
 				exit;
 			}
-			$addr=$sheng.$shi.$xian.$jiedao;
+			$addr=$sheng.','.$shi.','.$xian.','.$jiedao;
 			$shouhuoren = passport_encrypt($shouhuoren,KEY1);
 			$mobile = passport_encrypt($mobile,KEY2);
 			$addr = passport_encrypt($addr,KEY3);
 			$mysql_model->Query("UPDATE `@#_member` SET `real_name`='$shouhuoren', `real_phone`='$mobile',`ship_addr`='$addr' where uid='".$uid."'");
-			_message("收货地址添加成功",WEB_PATH."/mobile/home",3);
+			_message("收货地址添加成功",WEB_PATH."/mobile/home/address",3);
 		}
+	}
+
+	public function updateddress(){
+		$mysql_model=System::load_sys_class('model');
+		$member=$this->userinfo;
+		$uid=$member['uid'];
+		$id = $this->segment(4);
+		$id = abs(intval($id));
+		if(isset($_POST['submit'])){
+			$sheng=isset($_POST['sheng']) ? $_POST['sheng'] : "";
+			$shi=isset($_POST['shi']) ? $_POST['shi'] : "";
+			$xian=isset($_POST['xian']) ? $_POST['xian'] : "";
+			$jiedao=isset($_POST['jiedao']) ? $_POST['jiedao'] : "";
+			$youbian=isset($_POST['youbian']) ? $_POST['youbian'] : "";
+			$shouhuoren=isset($_POST['shouhuoren']) ? $_POST['shouhuoren'] : "";
+			$tell=isset($_POST['tell']) ? $_POST['tell'] : "";
+			$mobile=isset($_POST['mobile']) ? $_POST['mobile'] : "";
+			$time=time();
+			if($sheng==null or $jiedao==null or $shouhuoren==null or $mobile==null){
+				echo "带星号不能为空;";
+				exit;
+			}			
+			if(!_checkmobile($mobile)){
+				echo "手机号错误;";
+				exit;
+			}
+		$addr=$sheng.','.$shi.','.$xian.','.$jiedao;
+			$shouhuoren = passport_encrypt($shouhuoren,KEY1);
+			$mobile = passport_encrypt($mobile,KEY2);
+			$addr = passport_encrypt($addr,KEY3);
+		$mysql_model->Query("UPDATE `@#_member` SET `real_name`='$shouhuoren', `real_phone`='$mobile',`ship_addr`='$addr' where uid='".$uid."'");				
+		_message("修改成功",WEB_PATH."/mobile/home/address",3);
+		}
+	}
+
+	public function deladdress(){
+		$mysql_model=System::load_sys_class('model');
+		$member=$this->userinfo;
+		$uid=$member['uid'];
+		$id=$this->segment(4);
+		$id = abs(intval($id));
+		$mysql_model->Query("UPDATE `@#_member` SET `real_name`=null, `real_phone`=null,`ship_addr`=null where uid='".$uid."'");
+			header("location:".WEB_PATH."/mobile/home");
+		_message("删除成功",WEB_PATH."/mobile/home",3);
 	}
 
 	//账户管理
@@ -139,7 +183,6 @@ class home extends base {
 			  }		
 			} 		
 		}
-		
 		include templates("mobile/user","userbalance");
 	}
 	
@@ -158,6 +201,11 @@ class home extends base {
 		$uid = $member['uid'];
 		$title="收货地址";
 		$address = $this->db->GetOne("SELECT * FROM `@#_member` where `uid`='$uid'");
+		if($address['ship_addr'] == null || $address['real_name'] == null || $address['real_phone'] == null){
+			$is_address = false;
+		} else {
+			$is_address = true;
+		}
 		include templates("mobile/user","address");
 	}	
 	//晒单

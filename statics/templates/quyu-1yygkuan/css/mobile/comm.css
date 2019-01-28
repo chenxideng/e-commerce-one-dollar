@@ -1157,7 +1157,6 @@ div.pageDialog {
     font-family: Arial;
     font-size: 16px;
     line-height: 16px;
-    margin: 0px 3px;
     padding: 5px 0px 4px;
     width: 93%;
 }
@@ -1250,7 +1249,7 @@ div.pageDialog {
 
 #div_consignee2 .orangebut {
     background: #E4393C none repeat scroll 0px 0px;
-    border: 1px solid #2894FF;
+    border: 1px solid #ff6600;
     border-radius: 3px;
     color: #FFF;
     display: inline-block;
@@ -1284,8 +1283,9 @@ div.pageDialog {
   line-height: 45px!important;
   border-bottom: 1px dashed  #ccc;
   font-size: 16px;
-  color: #2894FF;
+  color: #ff6600;
   font-weight: 600;
+  padding-left:10px;
 }
 .m-useraddresslst .q1 .moren{
   font-size: 12px;
