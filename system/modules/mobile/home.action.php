@@ -118,7 +118,7 @@ class home extends base {
 			$mobile = passport_encrypt($mobile,KEY2);
 			$addr = passport_encrypt($addr,KEY3);
 			$mysql_model->Query("UPDATE `@#_member` SET `real_name`='$shouhuoren', `real_phone`='$mobile',`ship_addr`='$addr' where uid='".$uid."'");
-			_message("收货地址添加成功",WEB_PATH."/mobile/home/address",3);
+			_messagemobile("收货地址添加成功",WEB_PATH."/mobile/home/address",3);
 		}
 	}
 
@@ -139,11 +139,11 @@ class home extends base {
 			$mobile=isset($_POST['mobile']) ? $_POST['mobile'] : "";
 			$time=time();
 			if($sheng==null or $jiedao==null or $shouhuoren==null or $mobile==null){
-				echo "带星号不能为空;";
+				_message("带星号不能为空;");
 				exit;
 			}			
 			if(!_checkmobile($mobile)){
-				echo "手机号错误;";
+				_message("手机号错误;");
 				exit;
 			}
 		$addr=$sheng.','.$shi.','.$xian.','.$jiedao;
@@ -151,7 +151,7 @@ class home extends base {
 			$mobile = passport_encrypt($mobile,KEY2);
 			$addr = passport_encrypt($addr,KEY3);
 		$mysql_model->Query("UPDATE `@#_member` SET `real_name`='$shouhuoren', `real_phone`='$mobile',`ship_addr`='$addr' where uid='".$uid."'");				
-		_message("修改成功",WEB_PATH."/mobile/home/address",3);
+		_messagemobile("修改成功",WEB_PATH."/mobile/home/address",3);
 		}
 	}
 
@@ -163,7 +163,7 @@ class home extends base {
 		$id = abs(intval($id));
 		$mysql_model->Query("UPDATE `@#_member` SET `real_name`=null, `real_phone`=null,`ship_addr`=null where uid='".$uid."'");
 			header("location:".WEB_PATH."/mobile/home");
-		_message("删除成功",WEB_PATH."/mobile/home",3);
+		_messagemobile("删除成功",WEB_PATH."/mobile/home",3);
 	}
 
 	//账户管理

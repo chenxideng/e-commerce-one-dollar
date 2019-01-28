@@ -509,7 +509,6 @@
 	height:8px;
 }
 .pDetails-end .Progress-bar p span {
-	background:#bbb;
 }
 
 .pBtn a {
@@ -703,7 +702,7 @@
 }
 .pProcess2 {
 	box-shadow:1px 1px 1px #eee inset;
-	margin:20px 8px;
+	margin:8px 5px;
 }
 .pProcess .pCalculation {
 	padding:20px 15px;

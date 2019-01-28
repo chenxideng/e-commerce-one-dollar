@@ -67,7 +67,7 @@
 	height: 60px;
 }
 .m-name-info .u-mbr-info .wallet{
-	margin-bottom: 4px;
+	margin-bottom: 8px;
 	font-size: 0;
 }
 .m-name-info .u-mbr-info .wallet .wallet-item{
@@ -76,18 +76,19 @@
 	/*width: 35%;*/
 	font-size: 14px;
 	color: #555555;
+	padding-left:10px;
 }
 #wallet-item-balance{
 	width: 30%;
 }
 #wallet-item-flow{
 	width: 40%;
+	padding-left:30px;
 }
 .m-name-info .u-mbr-info .wallet .wallet-item span{
 	display: block;
 	height: 20px;
 	line-height: 20px;
-	text-align: center;
 }
 .m-name-info .u-mbr-info .wallet .recharge-btn{
 	display: inline-block;
