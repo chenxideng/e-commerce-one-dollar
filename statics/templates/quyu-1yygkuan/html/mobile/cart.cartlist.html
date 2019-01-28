@@ -75,12 +75,20 @@
 				
 	            </ul>
 	        </article>
-	       
+	      <!--
 	    <div id="divBtmMoney" class="g-Total-bt"><p>总共{wc:fun:_cfg('web_name_two')}
 			<span class="orange arial z-user">{wc:$num}</span>个商品  合计金额：
 			<span class="orange arial">{wc:$buyshopmoney}.00</span> 元</p>
 			<a href="javascript:;" class="orgBtn">结 算</a>
-		</div>
+		</div>-->
+		<div id="divBtmMoney" class="g-Total-bt" style="width: 100%;">
+            <p style="display: block;float: left;text-align: left;padding-left: 10px;">
+                共<span class="orange arial z-user">{wc:$num}</span>件商品<br>
+                合计<span id="total" class="orange arial"> {wc:$buyshopmoney}.00 </span>元
+            </p>
+            <a style="float: right;width: 35%;padding:0 10px;border-radius:5px;" href="javascript:;" class="orgBtn">去结算</a>
+
+        </div>
 	{wc:if:end}
 	    <div id="divNone" class="haveNot z-minheight" style="display:none"><s></s><p>主银，您的购物车还是空的哦</p>
 	    	<a href="{WEB_PATH}/mobile/mobile/glist">
