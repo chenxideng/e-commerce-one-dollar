@@ -19,7 +19,7 @@ class user extends memberbase {
 	}
 	//返回登录页面
 	public function login(){
-		 $webname=$this->_cfg['web_name'];
+		$webname=$this->_cfg['web_name'];
 		$user = $this->userinfo;
 		if($user){
 			header("Location:".WEB_PATH."/mobile/home/");exit;

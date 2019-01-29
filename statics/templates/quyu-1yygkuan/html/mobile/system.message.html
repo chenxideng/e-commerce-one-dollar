@@ -24,7 +24,7 @@
         <div class="head-l">        
 			<a href="javascript:;" onclick="history.go(-1)" class="z-HReturn"><img style="width:20px;padding-top:4px;" src="{G_TEMPLATES_IMAGE}/mobile/back.png"></a>
         </div>
-        <h2>系统提示</h2>
+        <div id="page-header-text">系统提示</div>
 		<div class="head-r"><a href="{WEB_PATH}/mobile/home"><img style="width:20px;padding-top:4px;" src="{G_TEMPLATES_IMAGE}/mobile/to_home.png"></a>
 		</div>
     </header>
@@ -33,7 +33,41 @@
         <div class="z-pay-tips"><s></s><b><em class="gray6">{wc:$string}</em></b></div>
     </div>
         
-{wc:templates "mobile/index","footer"}
+<footer class="footer">
+    <a id="btnTop" href="javascript:;" class="z-top" style="display:none;"><b class="z-arrow"></b></a>
+    <div class="footerdi" style="bottom: 0px;">
+        <ul>
+            <li class="f_home"> <a title="首页" href="{WEB_PATH}/mobile/mobile/"> <i class="active">&nbsp;</i> 首页 </a> </li>
+            <li class="f_whole"> <a title="所有商品" href="{WEB_PATH}/mobile/mobile/glist"> <i class="">&nbsp;</i> 所有商品 </a> </li>
+            <li class="f_jiexiao"> <a title="最新揭晓" href="{WEB_PATH}/mobile/mobile/lottery"> <i class="">&nbsp;</i> 最新揭晓 </a> </li>
+            <li class="f_car"> <a title="购物车" href="{WEB_PATH}/mobile/cart/cartlist"><i id="btnCart" style="position: relative;" class="">&nbsp;</i> 购物车 </a></li>
+            <li class="f_personal"> <a title="我的主页" href="{WEB_PATH}/mobile/home"> <i class="">&nbsp;</i> 我的主页 </a> </li>
+        </ul>
+  <script type="text/javascript">
+    //返回顶部
+    $(function() {
+        $("#btnGotoTop").click(function() {
+            $("html,body").animate({
+                scrollTop: 0
+            }, 1500);
+        });
+    });
+
+    function Show_Hidden(btnGotoTop3) {
+        if (btnGotoTop3.style.display == "block") {
+            btnGotoTop3.style.display = 'none';
+        } else {
+            btnGotoTop3.style.display = 'block';
+        }
+    }
+    </script>
+</div>
+
+<div id="pageDialogBG" class="pageDialogBG">
+    <div class="Prompt"></div>
+</div>
+<input name="hidLineLink" type="hidden" id="hidLineLink" value="{WEB_PATH}/mobile/mobile/">
+</footer>
 </div>
 </body>
 </html>

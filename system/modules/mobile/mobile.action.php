@@ -29,7 +29,7 @@ class mobile extends base {
 
 	//首页
 	public function init(){
-			$webname=$this->_cfg['web_name'];
+		$webname=$this->_cfg['web_name'];
 
 		//最新商品
 		$new_shop=$this->db->GetOne("select * from `@#_shoplist` where `pos` = '1' and `q_end_time` is null ORDER BY `id` DESC LIMIT 1");
@@ -261,7 +261,7 @@ class mobile extends base {
 			$gorecode=$this->db->GetOne("select * from `@#_member_go_record` where `shopid`='".$itemlist[0]['id']."' AND `shopqishu`='".$itemlist[0]['qishu']."' and huode!=0 ORDER BY id DESC LIMIT 1");
 		}
 
-
+		$shop='';
 		foreach($itemlist as $history){
 			$shop.=$history['id'].',';
 		}

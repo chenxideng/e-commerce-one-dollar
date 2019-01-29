@@ -28,12 +28,12 @@ class ajax extends base {
 		$member=$this->userinfo;
 		$title="我的会员中心";
 
-		 $user['code']=1;
-		 $user['username']=get_user_name($member['uid']);
-		 $user['uid']=$member['uid'];
-		 if(!empty($member)){
-		   $user['code']=0;
-		 }
+		$user['code']=1;
+		$user['username']=get_user_name($member['uid']);
+		$user['uid']=$member['uid'];
+		if(!empty($member)){
+		  $user['code']=0;
+		}
 
 		echo json_encode($user);
 
