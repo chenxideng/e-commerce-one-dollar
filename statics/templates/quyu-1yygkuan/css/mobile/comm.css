@@ -764,7 +764,7 @@ a.z-Site {
 }
 .haveNot .guangguang{
 	display: block;
-	margin:0 auto;
+	margin:0 12px;
 	height: 35px;
 	background-color: #ff6600;
 	line-height: 35px;
@@ -1072,23 +1072,23 @@ div.pageDialog {
     color: #fff;
 }
 
-.footerdi .f_home i.cur {
+.footerdi .f_home i.active {
     background-position: 0 0 !important;
 }
 
-.footerdi .f_whole i.cur {
+.footerdi .f_whole i.active {
     background-position: 0 -52px !important;
 }
 
-.footerdi .f_jiexiao i.cur {
+.footerdi .f_jiexiao i.active {
     background-position: 0 -222px !important;
 }
 
-.footerdi .f_car i.cur {
+.footerdi .f_car i.active {
     background-position: 0 -105px !important;
 }
 
-.footerdi .f_personal i.cur {
+.footerdi .f_personal i.active {
     background-position: 0 -152px !important;
 }
 

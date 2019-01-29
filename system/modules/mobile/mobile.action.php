@@ -293,7 +293,7 @@ class mobile extends base {
 			$gorecode=$this->db->GetOne("select * from `@#_member_go_record` where `shopid`='".$itemlist[0]['id']."' AND `shopqishu`='".$itemlist[0]['qishu']."' and huode!=0 ORDER BY id DESC LIMIT 1");
 		}
 
-
+		$shop='';
 		foreach($itemlist as $history){
 			$shop.=$history['id'].',';
 		}

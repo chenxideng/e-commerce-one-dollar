@@ -10,11 +10,11 @@
 	
     <div class="footerdi" style="bottom: 0px;">
 		<ul>
-		    <li class="f_home"> <a title="首页" href="{WEB_PATH}/mobile/mobile/"> <i class="cur">&nbsp;</i> 首页 </a> </li>
-		    <li class="f_whole"> <a title="所有商品" href="{WEB_PATH}/mobile/mobile/glist"> <i class="">&nbsp;</i> 所有商品 </a> </li>
-		    <li class="f_jiexiao"> <a title="最新揭晓" href="{WEB_PATH}/mobile/mobile/lottery"> <i class="">&nbsp;</i> 最新揭晓 </a> </li>
-		    <li class="f_car"> <a title="购物车" href="{WEB_PATH}/mobile/cart/cartlist"><i id="btnCart" style="position: relative;" class="">&nbsp;</i> 购物车 </a></li>
-		    <li class="f_personal"> <a title="我的主页" href="{WEB_PATH}/mobile/home"> <i class="">&nbsp;</i> 我的主页 </a> </li>
+		    <li class="f_home"> <a title="首页" href="{WEB_PATH}/mobile/mobile/"> <i class="active">&nbsp;</i> 首页 </a> </li>
+		    <li class="f_whole"> <a title="所有商品" href="{WEB_PATH}/mobile/mobile/glist"> <i class="inactive">&nbsp;</i> 所有商品 </a> </li>
+		    <li class="f_jiexiao"> <a title="最新揭晓" href="{WEB_PATH}/mobile/mobile/lottery"> <i class="inactive">&nbsp;</i> 最新揭晓 </a> </li>
+		    <li class="f_car"> <a title="购物车" href="{WEB_PATH}/mobile/cart/cartlist"><i id="btnCart" style="position: relative;" class="inactive">&nbsp;</i> 购物车 </a></li>
+		    <li class="f_personal"> <a title="我的主页" href="{WEB_PATH}/mobile/home"> <i class="inactive">&nbsp;</i> 我的主页 </a> </li>
 		</ul>
   <script type="text/javascript">
     //返回顶部
@@ -33,6 +33,13 @@
             btnGotoTop3.style.display = 'block';
         }
     }
+
+    $(function(){
+        $('i.inactive').click(function(){
+            $('i').addClass('inactive');
+            $(this).removeClass('inactive').addClass('active');
+        });
+    });
     </script>
 </div>
 
