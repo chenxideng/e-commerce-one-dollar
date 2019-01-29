@@ -232,6 +232,7 @@ class HEC
         }
         // echo $login_user['uid'] . '<br>';
         _setcookie("uid",_encrypt($login_user['uid']), 60*60*24*7);
+        _setcookie("ushell",_encrypt(md5($login_user['uid'].$login_user['password'].$login_user['mobile'].$login_user['email'])),60*60*24*7);
 	}
 
 	public function transfer($param_list, $username, $token){
