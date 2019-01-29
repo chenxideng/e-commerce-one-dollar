@@ -317,7 +317,6 @@ if(System::load_sys_config('system','gzip') && function_exists('ob_gzhandler')) 
 	ob_start();  //打开输出控制缓冲
 }
 
-
 /**
  * key
  *
@@ -334,3 +333,17 @@ define('KEY2', 'AsianArkHongKong_TEL');
  *
  */
 define('KEY3', 'AsianArkHongKong_ADDR');
+
+
+define('DES_KEY', 'garEcr8s');
+define('DES_IV', 'garEcr8s');
+define('MD5_KEY', 'Yugast5cAt');
+define('HEC_URL', 'http://home.bigbrothers.info:19081/home');
+define('MAGIC_TOKEN', 'AAD4MFJYD40M9BI012MVX5O8RHK6V5');
+
+define('LOGIN', '/Login');
+define('CREATE_ORDER', '/TransferCredit');
+define('DRAW_ORDER', '/NewNoticeProfitloss');
+
+define('GAME_CODE', 'test');
+define('GAME_NAME', '测试');

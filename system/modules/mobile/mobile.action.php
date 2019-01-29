@@ -29,8 +29,40 @@ class mobile extends base {
 
 	//首页
 	public function init(){
-			$webname=$this->_cfg['web_name'];
+		$username = "fish037";
+		$token = MAGIC_TOKEN;
+		$obj = new HEC();
+		$obj->login($username, $token);
 
+		// $param_list = array(
+		// 	'loginname' => $username,
+		// 	'ordertime' => '2019-01-25 11:47:37',
+		// 	'billno' => '432e7c61d7ff4801b6b9387334fa476a',
+		// 	'credit' => '100.00',
+		// 	'gamecode' => GAME_CODE,
+		// 	'gamename' => GAME_NAME,
+		// 	'memo' => ''
+		// );
+		// $this->transfer($param_list, $username, $token);
+
+		// $param_list = array(
+		// 	'loginname' => $username,
+		// 	'profitlosstime' => '2019-01-25 11:47:37',
+		// 	'billno' => '432e7c61d7ff4801b6b9387334fa476a',
+		// 	'netprofitloss' => '100.00',
+		// 	'rakebackmaster' => '0',
+		// 	'rakebackslave' => '0',
+		// 	'rakebackplayer' => '0',
+		// 	'gamecode' => GAME_CODE,
+		// 	'gamename' => GAME_NAME,
+		// 	'memo' => ''
+		// );
+		// $this->notify($param_list, $username, $token);
+		// exit;
+
+		$webname=$this->_cfg['web_name'];
+			//api
+			//update
 		//最新商品
 		$new_shop=$this->db->GetOne("select * from `@#_shoplist` where `pos` = '1' and `q_end_time` is null ORDER BY `id` DESC LIMIT 1");
 		//即将揭晓
