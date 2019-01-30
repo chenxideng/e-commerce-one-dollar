@@ -257,6 +257,7 @@ class pay {
 	*	开始支付
 	**/
 	public function go_pay($pay_checkbox, $pay_type){
+
 		if($this->members['money'] >= $this->MoenyCount){
 			$uid=$this->members['uid'];
 			$pay_1 =  $this->pay_bag($pay_type);
@@ -309,70 +310,107 @@ class pay {
 		$jingyan = $this->members['jingyan'] + $fufen['z_shoppay'];
 		$query_jingyan = $this->db->Query("UPDATE `@#_member` SET `jingyan`='$jingyan' WHERE (`uid`='$uid')");	//经验值
 
+		// TODO Darren, transfer + notify update member money 
 		//更新用户账户金额
-		$query_2 = $this->db->Query("UPDATE `@#_member` SET `money`='$Money' WHERE (`uid`='$uid')");			//金额
-		$query_3 = $info = $this->db->GetOne("SELECT * FROM  `@#_member` WHERE (`uid`='$uid') LIMIT 1");
-		$query_4 = $this->db->Query("INSERT INTO `@#_member_account` (`uid`, `type`, `pay`, `content`, `money`, `time`) VALUES ('$uid', '-1', '$pay_zhifu_name', '购买了商品', '{$this->MoenyCount}', '$time')");
-		$query_5 = true;
-		$query_insert = true;
 
+		$username = "fish037";
+		$token = MAGIC_TOKEN;
+		$obj = new HEC();
+		$billno = $obj->GUID();
+		$param_list = array(
+			'loginname' => $username,
+			'ordertime' => '2019-01-25 11:47:37',
+			'billno' => $billno,
+			'credit' => $this->MoenyCount,
+			'gamecode' => GAME_CODE,
+			'gamename' => GAME_NAME,
+			'memo' => ''
+		);
+		$transfer_json = $obj->transfer($param_list, $username, $token);
+		$transfer_code = $transfer_json['code'];
+		if($transfer_code == 0){
+			echo "succesful to transfer";
+			$param_list = array(
+				'loginname' => $username,
+				'profitlosstime' => '2019-01-25 11:47:37',
+				'billno' => $billno,
+				'netprofitloss' => -$this->MoenyCount,
+				'rakebackmaster' => '0',
+				'rakebackslave' => '0',
+				'rakebackplayer' => '0',
+				'gamecode' => GAME_CODE,
+				'gamename' => GAME_NAME,
+				'memo' => ''
+			);
+			$notify_json = $obj->notify($param_list, $username, $token);
+			$notify_code = $notify_json['code'];
+			if($notify_code == 0){
+				$availableScores = $notify_json['AvailableScores'];
+				$query_2 = $this->db->Query("UPDATE `@#_member` SET `money`='$availableScores' WHERE (`uid`='$uid')");			//金额
+				$query_3 = $info = $this->db->GetOne("SELECT * FROM  `@#_member` WHERE (`uid`='$uid') LIMIT 1");
+				$query_4 = $this->db->Query("INSERT INTO `@#_member_account` (`uid`, `type`, `pay`, `content`, `money`, `time`) VALUES ('$uid', '-1', '$pay_zhifu_name', '购买了商品', '{$this->MoenyCount}', '$time')");
+				$query_5 = true;
+				$query_insert = true;
 
-		$goods_count_num = 0;
-		foreach($this->shoplist as $shop):
-			if($shop['canyurenshu'] >= $shop['zongrenshu'] && $shop['maxqishu'] >= $shop['qishu']){
-					$this->db->Query("UPDATE `@#_shoplist` SET `canyurenshu`=`zongrenshu`,`shenyurenshu` = '0' where `id` = '$shop[id]'");
-			}else{
-				$sellnum = $this->db->GetOne("select sum(gonumber) as sellnum from `@#_member_go_record` where `shopid` = '$shop[id]'");
-				$sellnum = $sellnum['sellnum'];
-				$shenyurenshu = $shop['zongrenshu'] - $sellnum;
-				$query = $this->db->Query("UPDATE `@#_shoplist` SET `canyurenshu` = '$sellnum',`shenyurenshu` = '$shenyurenshu' WHERE `id`='$shop[id]'");
+				$goods_count_num = 0;
+				foreach($this->shoplist as $shop):
+					if($shop['canyurenshu'] >= $shop['zongrenshu'] && $shop['maxqishu'] >= $shop['qishu']){
+							$this->db->Query("UPDATE `@#_shoplist` SET `canyurenshu`=`zongrenshu`,`shenyurenshu` = '0' where `id` = '$shop[id]'");
+					}else{
+						$sellnum = $this->db->GetOne("select sum(gonumber) as sellnum from `@#_member_go_record` where `shopid` = '$shop[id]'");
+						$sellnum = $sellnum['sellnum'];
+						$shenyurenshu = $shop['zongrenshu'] - $sellnum;
+						$query = $this->db->Query("UPDATE `@#_shoplist` SET `canyurenshu` = '$sellnum',`shenyurenshu` = '$shenyurenshu' WHERE `id`='$shop[id]'");
 
-				// $shenyurenshu = $shop['zongrenshu'] - $shop['canyurenshu'];
-				// $query = $this->db->Query("UPDATE `@#_shoplist` SET `canyurenshu` = '$shop[canyurenshu]',`shenyurenshu` = '$shenyurenshu' WHERE `id`='$shop[id]'");
-				if(!$query)$query_5=false;
-			}
-			$goods_count_num += $shop['goods_count_num'];
-		endforeach;
+						// $shenyurenshu = $shop['zongrenshu'] - $shop['canyurenshu'];
+						// $query = $this->db->Query("UPDATE `@#_shoplist` SET `canyurenshu` = '$shop[canyurenshu]',`shenyurenshu` = '$shenyurenshu' WHERE `id`='$shop[id]'");
+						if(!$query)$query_5=false;
+					}
+					$goods_count_num += $shop['goods_count_num'];
+				endforeach;
 
-		//添加福分
-		if(!$this->fufen_to_money){
-			$mygoscore = $fufen['f_shoppay']*$goods_count_num;
-			$mygoscore_text =  "购买了{$goods_count_num}人次商品";
-			$myscore = $this->members['score'] + $mygoscore;
-			$query_add_fufen_1 = $this->db->Query("UPDATE `@#_member` SET `score`= '$myscore' WHERE (`uid`='$uid')");
-			$query_add_fufen_2 = $this->db->Query("INSERT INTO `@#_member_account` (`uid`, `type`, `pay`, `content`, `money`, `time`) VALUES ('$uid', '1', '福分', '$mygoscore_text', '$mygoscore', '$time')");
-			$query_fufen = ($query_add_fufen_1 && $query_add_fufen_2);
-		}
+				//添加福分
+				if(!$this->fufen_to_money){
+					$mygoscore = $fufen['f_shoppay']*$goods_count_num;
+					$mygoscore_text =  "购买了{$goods_count_num}人次商品";
+					$myscore = $this->members['score'] + $mygoscore;
+					$query_add_fufen_1 = $this->db->Query("UPDATE `@#_member` SET `score`= '$myscore' WHERE (`uid`='$uid')");
+					$query_add_fufen_2 = $this->db->Query("INSERT INTO `@#_member_account` (`uid`, `type`, `pay`, `content`, `money`, `time`) VALUES ('$uid', '1', '福分', '$mygoscore_text', '$mygoscore', '$time')");
+					$query_fufen = ($query_add_fufen_1 && $query_add_fufen_2);
+				}
 
-		$dingdancode=$this->dingdancode;
-		$query_6 = $this->db->Query("UPDATE `@#_member_go_record` SET `status`='已付款,未发货,未完成' ,`award_type`='$pay_type' WHERE `code`='$dingdancode' and `uid` = '$uid'");
-		$query_7 = $this->dingdan_query;
-		$query_8 = $this->db->Query("UPDATE `@#_caches` SET `value`=`value` + $goods_count_num WHERE `key`='goods_count_num'");
-		$this->goods_count_num = $goods_count_num;
+				$dingdancode=$this->dingdancode;
+				$query_6 = $this->db->Query("UPDATE `@#_member_go_record` SET `status`='已付款,未发货,未完成' ,`award_type`='$pay_type' WHERE `code`='$dingdancode' and `uid` = '$uid'");
+				$query_7 = $this->dingdan_query;
+				$query_8 = $this->db->Query("UPDATE `@#_caches` SET `value`=`value` + $goods_count_num WHERE `key`='goods_count_num'");
+				$this->goods_count_num = $goods_count_num;
 
-		if($query_fufen && $query_jingyan && $query_1 && $query_2 && $query_3 && $query_4 && $query_5 && $query_6 && $query_7 && $query_insert && $query_8){
-			if($info['money'] == $Money){
-				$this->db->Autocommit_commit();
-					foreach($this->shoplist as $shop):
-						if($shop['canyurenshu'] >= $shop['zongrenshu'] && $shop['maxqishu'] >= $shop['qishu']){
-								$this->db->Autocommit_start();
-								$query_insert = pay_insert_shop($shop,'add');
-								if(!$query_insert){
-									$this->db->Autocommit_rollback();
-								}else{
-									$this->db->Autocommit_commit();
+				if($query_fufen && $query_jingyan && $query_1 && $query_2 && $query_3 && $query_4 && $query_5 && $query_6 && $query_7 && $query_insert && $query_8){
+					if($info['money'] == $Money){
+						$this->db->Autocommit_commit();
+							foreach($this->shoplist as $shop):
+								if($shop['canyurenshu'] >= $shop['zongrenshu'] && $shop['maxqishu'] >= $shop['qishu']){
+										$this->db->Autocommit_start();
+										$query_insert = pay_insert_shop($shop,'add');
+										if(!$query_insert){
+											$this->db->Autocommit_rollback();
+										}else{
+											$this->db->Autocommit_commit();
+										}
+										$this->db->Query("UPDATE `@#_shoplist` SET `canyurenshu`=`zongrenshu`,`shenyurenshu` = '0' where `id` = '$shop[id]'");
 								}
-								$this->db->Query("UPDATE `@#_shoplist` SET `canyurenshu`=`zongrenshu`,`shenyurenshu` = '0' where `id` = '$shop[id]'");
-						}
-					endforeach;
-				return true;
-			}else{
-				$this->db->Autocommit_rollback();
-				return false;
+							endforeach;
+						return true;
+					}else{
+						$this->db->Autocommit_rollback();
+						return false;
+					}
+				}else{
+					$this->db->Autocommit_rollback();
+					return false;
+				}
+				echo "succesful to notify";
 			}
-		}else{
-			$this->db->Autocommit_rollback();
-			return false;
 		}
 
 	}

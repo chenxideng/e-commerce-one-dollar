@@ -190,6 +190,20 @@ class HEC
 		$this->db=System::load_sys_class('model');
 	}
 
+	public function digest($md5_str){
+		$new_str = '';
+		for($i=0; $i<strlen($md5_str); $i++){
+			if($i % 2 == 0 && $md5_str[$i] == '0')
+		    	continue;
+		    else
+		    	$new_str .= $md5_str[$i];
+		}
+		return $new_str;
+	}
+
+	function GUID() {
+	    return strtoupper(bin2hex(openssl_random_pseudo_bytes(16)));
+	}
 
 	public function login($username, $token){
 		$ch = curl_init(HEC_URL . LOGIN);
@@ -242,12 +256,13 @@ class HEC
 		    $param_list,
 		    array_keys($param_list)
 		));
+		echo $param_str . '<br>';
 		$key_str = implode("&", $param_list) . MD5_KEY;
 		// DES CBC 加解密
 		$des = new DES(DES_KEY, 'DES-CBC', DES::OUTPUT_HEX, DES_IV);
 		$data = array(
 		    'param' => $des->encrypt($param_str),
-		    'key' => md5($key_str)
+		    'key' => $this->digest(md5($key_str))
 		);
 
 		$payload = json_encode($data);
@@ -270,7 +285,9 @@ class HEC
         $result = curl_exec($ch);
         curl_close($ch);
         $obj = json_decode($result, true);
-        echo '<br>' . $obj['code'];
+        // echo '<br>' . $obj['code'];
+        var_dump($obj);
+        return $obj;
 	}
 
 	public function notify($param_list, $username, $token){
@@ -279,12 +296,14 @@ class HEC
 		    $param_list,
 		    array_keys($param_list)
 		));
+		echo $param_str . '<br>';
 		$key_str = implode("&", $param_list) . MD5_KEY;
 		// DES CBC 加解密
 		$des = new DES(DES_KEY, 'DES-CBC', DES::OUTPUT_HEX, DES_IV);
 		$data = array(
 		    'param' => $des->encrypt($param_str),
-		    'key' => md5($key_str)
+		    'key' => $this->digest(md5($key_str))
+		    // 'key' => str_replace('0', '', md5($key_str))
 		);
 
 		$payload = json_encode($data);
@@ -307,8 +326,9 @@ class HEC
         $result = curl_exec($ch);
         curl_close($ch);
         $obj = json_decode($result, true);
-        echo '<br>' . $obj['code'] . '<br>';
-        // var_dump($obj);
+        // echo '<br>' . $obj['code'] . '<br>';
+        var_dump($obj);
+        return $obj;
 	}
 }
 ?>
