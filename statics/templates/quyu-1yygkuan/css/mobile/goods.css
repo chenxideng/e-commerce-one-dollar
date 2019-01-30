@@ -291,10 +291,10 @@
 }
 .goodsList .goodsListR a.add s {
 	display:inline-block;
-	background-position:-58px -29px;
-	width:22px;
-	height:22px;
-	margin:3px 0 0 1px;
+	width:30px;
+	height:30px;
+	background:url(../../images/mobile/set.png);
+	background-size:30px 30px;
 }
 .goodsList .goodsListR a.gray {
 	background:#cecece;
@@ -322,7 +322,6 @@
 }
 .pCon {
 	background:#f4f4f4;
-	padding-bottom:20px;
 }
 .pNav {
 	width:100%;

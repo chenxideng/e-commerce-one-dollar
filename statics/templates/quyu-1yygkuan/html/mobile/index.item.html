@@ -151,10 +151,10 @@
                     <dd>
                     <em class="blue">{wc:fun:get_user_name($itemlist[0]['q_uid'])}</em>({wc:fun:get_ip($gorecode['id'],'ipcity')}) 
                     </dd>
-                    <dd>总共{wc:fun:_cfg('web_name_two')}：<em class="orange arial">{wc:$gorecode['gonumber']}</em>人次</dd>
-                    <dd>幸运{wc:fun:_cfg('web_name_two')}码：<em class="orange arial">{wc:$gorecode['huode']}</em></dd>
-                    <dd>揭晓时间：{wc:fun:microt($itemlist[0]['q_end_time'])}</dd>                                  
-                    <dd>{wc:fun:_cfg('web_name_two')}时间：{wc:fun:microt($gorecode['time'])}</dd>
+                    <dd>本期参与夺宝：<em class="orange arial">{wc:$gorecode['gonumber']}</em>人次</dd>
+                    <dd>幸运夺宝码：<em class="orange arial">{wc:$gorecode['huode']}</em></dd>
+                    <dd>夺宝时间：{wc:fun:microt($gorecode['time'])}</dd>
+                    <dd>揭晓时间：{wc:fun:microt($itemlist[0]['q_end_time'])}</dd>
                 </li>
             </ul>
             {wc:if:end}

@@ -30,9 +30,9 @@ function get_user_name($uid='',$type='username',$key='sub'){
 	}else{		
 		$db = System::load_sys_class("model");
 		$uid = intval($uid);
-		$info = $db->GetOne("select username,email,mobile from `@#_member` where `uid` = '$uid' limit 1");	
-		if(isset($info['username']) && !empty($info['username'])){	
-				return $info['username'];
+		$info = $db->GetOne("select nickname,email,mobile from `@#_member` where `uid` = '$uid' limit 1");	
+		if(isset($info['nickname']) && !empty($info['nickname'])){	
+				return $info['nickname'];
 		} 
 		
 		if(isset($info['email']) && !empty($info['email'])){	

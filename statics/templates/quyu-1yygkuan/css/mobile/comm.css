@@ -209,7 +209,6 @@ a.z-CloseBtn,a.z-DefineBtn,a.z-ShoppingBtn,a.z-cartBtn {
 }
 .grayBtn,.orgBtn {
     display: block;
-    width: 100%;
     -webkit-box-sizing: border-box;
     height: 35px;
     line-height: 35px;
@@ -649,13 +648,13 @@ a.z-Site {
 	font-style:normal;
 }
 .Progress-bar .Pro-bar-li li.P-bar01 em {
-	color:#F60;
+	color:#999;
 }
 .Progress-bar .Pro-bar-li li.P-bar02 em {
 	color:#777;
 }
 .Progress-bar .Pro-bar-li li.P-bar03 em {
-	color:#2AF;
+	color:#f60;
 }
 .Progress-bar .Pro-bar-li li.P-bar01 {
 	width:30%;
@@ -749,7 +748,7 @@ a.z-Site {
 }
 .haveNot {
     width: 100%;
-    margin: 100px auto 0;
+    margin: 50px auto 50px;
     text-align: center;
     color: #bbb;
     font-size: 16px;

@@ -257,7 +257,6 @@ class pay {
 	*	开始支付
 	**/
 	public function go_pay($pay_checkbox, $pay_type){
-
 		if($this->members['money'] >= $this->MoenyCount){
 			$uid=$this->members['uid'];
 			$pay_1 =  $this->pay_bag($pay_type);

@@ -65,7 +65,7 @@ $(function() {
                 if (h.length > 0) {
                     h.children("span").html(q + ".00")
                 }
-                g.children("p").html('总共购买<span class="orange arial z-user">' + r + '</span>个商品  合计金额：<span class="orange arial">' + q + ".00</span> 元")
+                g.children("p").html('共<span class="orange arial z-user">' + r + '</span>件商品<br>合计：<span class="orange arial">' + q + ".00</span> 元")
             } else {
                 g.remove()
             }

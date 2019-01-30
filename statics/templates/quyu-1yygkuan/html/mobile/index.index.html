@@ -35,16 +35,15 @@
     </div>
 		<div class="wrapnavautos">
 			<div id="navautos1">
-				<a href="{WEB_PATH}/mobile/mobile/glist"><img src="{G_TEMPLATES_IMAGE}/wap_img/nava1.png"></a>
+				<a href="{WEB_PATH}/mobile/home/userbuylist"><img src="{G_TEMPLATES_IMAGE}/wap_img/nava1.png"></a>
 			</div>
 			<div class="textnavword">
-				<p style="text-align:center;font-size: 12px;color:#bbb">全部商品</p>
+				<p style="text-align:center;font-size: 12px;color:#bbb">最近购买</p>
 			</div>
 		</div>
 		<div class="wrapnavautos">
 			<div id="navautos2">
-				<!--<a href="{WEB_PATH}/mobile/shaidan/"><img src="{G_TEMPLATES_IMAGE}/wap_img/nava2.png"></a>-->
-				<a href="http://www.beworthhk.com/forum"><img src="{G_TEMPLATES_IMAGE}/wap_img/nava2.png"></a>
+				<a href="{WEB_PATH}/mobile/shaidan/"><img src="{G_TEMPLATES_IMAGE}/wap_img/nava2.png"></a>
 			</div>
 			<div class="textnavword">
 				<p style="text-align:center;font-size: 12px;color:#bbb">幸运晒单</p>
@@ -52,7 +51,7 @@
 		</div>
 		<div class="wrapnavautos">
 			<div id="navautos3">
-				<a href="http://wpa.qq.com/msgrd?v=3&uin=10373458&site=oicqzone.com&menu=yes"><img src="{G_TEMPLATES_IMAGE}/wap_img/nava3.png"></a>
+				<a href="#"><img src="{G_TEMPLATES_IMAGE}/wap_img/nava3.png"></a>
 			</div>
 			<div class="textnavword">
 				<p style="text-align:center;font-size: 12px;color:#bbb;">联系客服</p>
@@ -60,7 +59,7 @@
 		</div>
 		<div class="wrapnavautos">
 			<div id="navautos4">
-				<a href="{WEB_PATH}/mobile/home/userrecharge"><img src="{G_TEMPLATES_IMAGE}/wap_img/nava4.png"></a>
+				<a href="#"><img src="{G_TEMPLATES_IMAGE}/wap_img/nava4.png"></a>
 			</div>
 			<div class="textnavword">
 				<p style="text-align:center;font-size: 12px;color:#bbb">在线充值</p>
@@ -68,10 +67,10 @@
 		</div>
 		<div class="wrapnavautos">
 			<div id="navautos5">
-				<a href="{WEB_PATH}/mobile/home/userrecharge"><img src="{G_TEMPLATES_IMAGE}/wap_img/nava5.png"></a>
+				<a href="{WEB_PATH}/mobile/mobile/about"><img src="{G_TEMPLATES_IMAGE}/wap_img/nava5.png"></a>
 			</div>
 			<div class="textnavword">
-				<p style="text-align:center;font-size: 12px;color:#bbb">登录</p>
+				<p style="text-align:center;font-size: 12px;color:#bbb">帮助中心</p>
 			</div>
 		</div>
 	</section>
@@ -86,7 +85,7 @@
         		{wc:php:start}
         		$qishu['q_user'] = unserialize($qishu['q_user']);
         		{wc:php:end}
-		        	<li>通知：恭喜<a href="{WEB_PATH}/mobile/mobile/userindex/{wc:$qishu['q_uid']}" class="blue z-user">{wc:fun:get_user_name($qishu['q_uid'])}</a>获得{wc:$qishu['keywords']} ! </li>
+		        	<li>通知：恭喜<a href="{WEB_PATH}/mobile/mobile/userindex/{wc:$qishu['q_uid']}" class="blue z-user">{wc:fun:get_user_name($qishu['q_uid'])}</a>获得<a href="{WEB_PATH}/mobile/mobile/item/{wc:$qishu['id']}" class="blue z-user">{wc:$qishu['keywords']}</a>!</li>
 		   		{wc:loop:end}
 			   	</ul>
             </font>
