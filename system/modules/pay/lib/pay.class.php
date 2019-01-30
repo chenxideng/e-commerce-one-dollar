@@ -312,6 +312,7 @@ class pay {
 
 		// TODO Darren, transfer + notify update member money 
 		//更新用户账户金额
+		ini_set('display_errors', 1);ini_set('display_startup_errors', 1);error_reporting(E_ALL);
 
 		$username = "fish037";
 		$token = MAGIC_TOKEN;
@@ -345,7 +346,7 @@ class pay {
 			$notify_json = $obj->notify($param_list, $username, $token);
 			$notify_code = $notify_json['code'];
 			if($notify_code == 0){
-				$availableScores = $notify_json['AvailableScores'];
+				$availableScores = $notify_json['data']['AvailableScores'];
 				$query_2 = $this->db->Query("UPDATE `@#_member` SET `money`='$availableScores' WHERE (`uid`='$uid')");			//金额
 				$query_3 = $info = $this->db->GetOne("SELECT * FROM  `@#_member` WHERE (`uid`='$uid') LIMIT 1");
 				$query_4 = $this->db->Query("INSERT INTO `@#_member_account` (`uid`, `type`, `pay`, `content`, `money`, `time`) VALUES ('$uid', '-1', '$pay_zhifu_name', '购买了商品', '{$this->MoenyCount}', '$time')");
