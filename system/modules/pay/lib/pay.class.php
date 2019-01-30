@@ -314,38 +314,16 @@ class pay {
 		//更新用户账户金额
 		ini_set('display_errors', 1);ini_set('display_startup_errors', 1);error_reporting(E_ALL);
 
-		$username = "fish037";
+		$username = $this->members['username'];
 		$token = MAGIC_TOKEN;
 		$obj = new HEC();
 		$billno = $obj->GUID();
-		$param_list = array(
-			'loginname' => $username,
-			'ordertime' => '2019-01-25 11:47:37',
-			'billno' => $billno,
-			'credit' => $this->MoenyCount,
-			'gamecode' => GAME_CODE,
-			'gamename' => GAME_NAME,
-			'memo' => ''
-		);
+		$param_list = $obj->gen_transfer_param($username, $billno, $this->MoenyCount);
 		$transfer_json = $obj->transfer($param_list, $username, $token);
-		$transfer_code = $transfer_json['code'];
-		if($transfer_code == 0){
-			echo "succesful to transfer";
-			$param_list = array(
-				'loginname' => $username,
-				'profitlosstime' => '2019-01-25 11:47:37',
-				'billno' => $billno,
-				'netprofitloss' => -$this->MoenyCount,
-				'rakebackmaster' => '0',
-				'rakebackslave' => '0',
-				'rakebackplayer' => '0',
-				'gamecode' => GAME_CODE,
-				'gamename' => GAME_NAME,
-				'memo' => ''
-			);
+		if($transfer_json['code'] == 0){
+			$param_list = $obj->gen_notify_param($username, $billno, -$this->MoenyCount);
 			$notify_json = $obj->notify($param_list, $username, $token);
-			$notify_code = $notify_json['code'];
-			if($notify_code == 0){
+			if($$notify_json['code'] == 0){
 				$availableScores = $notify_json['data']['AvailableScores'];
 				$query_2 = $this->db->Query("UPDATE `@#_member` SET `money`='$availableScores' WHERE (`uid`='$uid')");			//金额
 				$query_3 = $info = $this->db->GetOne("SELECT * FROM  `@#_member` WHERE (`uid`='$uid') LIMIT 1");
@@ -410,7 +388,6 @@ class pay {
 					$this->db->Autocommit_rollback();
 					return false;
 				}
-				echo "succesful to notify";
 			}
 		}
 

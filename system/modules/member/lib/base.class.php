@@ -201,8 +201,35 @@ class HEC
 		return $new_str;
 	}
 
-	function GUID() {
+	public function GUID() {
 	    return strtoupper(bin2hex(openssl_random_pseudo_bytes(16)));
+	}
+
+	public function gen_transfer_param($username, $billno, $amount){
+		return array(
+			'loginname' => $username,
+			'ordertime' => date("Y-m-d H:i:s"),
+			'billno' => $billno,
+			'credit' => $amount,
+			'gamecode' => GAME_CODE,
+			'gamename' => GAME_NAME,
+			'memo' => '一元购转账：' . $amount
+		);
+	}
+
+	public function gen_notify_param($username, $billno, $amount){
+		return array(
+			'loginname' => $username,
+			'profitlosstime' => date("Y-m-d H:i:s"),
+			'billno' => $billno,
+			'netprofitloss' => $amount,
+			'rakebackmaster' => '0',
+			'rakebackslave' => '0',
+			'rakebackplayer' => '0',
+			'gamecode' => GAME_CODE,
+			'gamename' => GAME_NAME,
+			'memo' => '一元购转账：' . $amount
+		);
 	}
 
 	public function login($username, $token){
@@ -286,7 +313,7 @@ class HEC
         curl_close($ch);
         $obj = json_decode($result, true);
         // echo '<br>' . $obj['code'];
-        var_dump($obj);
+        // var_dump($obj);
         return $obj;
 	}
 
@@ -327,7 +354,7 @@ class HEC
         curl_close($ch);
         $obj = json_decode($result, true);
         // echo '<br>' . $obj['code'] . '<br>';
-        var_dump($obj);
+        // var_dump($obj);
         return $obj;
 	}
 }
