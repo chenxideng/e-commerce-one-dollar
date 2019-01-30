@@ -65,19 +65,13 @@ tr{height:40px;line-height:40px}
 			
 		<div class="dingdan_content_user">
 			<li><b class="api_b">购买人ID：</b> <?php echo $user['uid'];?></li>
-			<li><b class="api_b">购买人昵称：</b> <?php echo $user['username'];?></li>
-			<li><b class="api_b">购买人邮箱：</b><?php echo $user['email'];?></li>		
-			<li><b class="api_b">购买人手机：</b><?php echo $user['mobile'];?></li>					
+			<li><b class="api_b">购买人昵称：</b> <?php echo $user['username'];?></li>		
 			<li><b class="api_b">购买时间：</b><?php echo date("Y-m-d H:i:s",$go_time);?></li>	
             <li><b class="api_b">收货信息：</b><?php 
-			if($user_dizhi){
-				foreach($user_dizhi as $k=>$v){
-					$user_dizhi[$k] = _htmtocode($v);
-				}
-				echo $user_dizhi['sheng'].' - '.$user_dizhi['shi'].' - '.$user_dizhi['xian'].' - '.$user_dizhi['jiedao'];
-				echo "&nbsp;&nbsp;&nbsp;邮编:".$user_dizhi['youbian'];				
-				echo "&nbsp;&nbsp;&nbsp;收货人:".$user_dizhi['shouhuoren'];
-				echo "&nbsp;&nbsp;&nbsp;手机:".$user_dizhi['mobile'];
+			if($user['ship_addr'] && $user['real_name'] && $user['real_phone']){
+				echo $ship_addr;			
+				echo "&nbsp;&nbsp;&nbsp;收货人: ".$real_name;
+				echo "&nbsp;&nbsp;&nbsp;手机: ".$real_phone;
 			}else{
 				echo "该用户未填写收货信息,请自行联系买家！";
 			}

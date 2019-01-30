@@ -1,6 +1,8 @@
 <?php 
 
-
+define('KEY1', 'AsianArkHongKong_NAME');
+define('KEY2', 'AsianArkHongKong_TEL');
+define('KEY3', 'AsianArkHongKong_ADDR');
 defined('G_IN_SYSTEM')or exit('no');
 System::load_app_class('admin',G_ADMIN_DIR,'no');
 class dingdan extends admin {
@@ -142,9 +144,45 @@ class dingdan extends admin {
 		$user = $this->db->GetOne("select * from `@#_member` where `uid` = '$uid'");
 		$user_dizhi = $this->db->GetOne("select * from `@#_member_dizhi` where `uid` = '$uid' and `default` = 'Y'");
 		$go_time = $record['time'];
+		$ship_addr = passport_decrypt($user['ship_addr'],KEY3);	
+		$real_name = passport_decrypt(trim($user['real_name']),KEY1);
+		$real_phone = passport_decrypt(trim($user['real_phone']), KEY2);
 		include $this->tpl(ROUTE_M,'dingdan.code');	
 	}
-	
+
+	public function passport_encrypt($str,$key){
+    srand((double)microtime() * 1000000); 
+    $encrypt_key=md5(rand(0, 32000)); 
+    $ctr=0; 
+    $tmp=''; 
+    for($i=0;$i<strlen($str);$i++){ 
+        $ctr=$ctr==strlen($encrypt_key)?0:$ctr; 
+        $tmp.=$encrypt_key[$ctr].($str[$i] ^ $encrypt_key[$ctr++]); 
+    } 
+    return base64_encode(passport_key($tmp,$key)); 
+} 
+
+public function passport_decrypt($str,$key){
+    $str=passport_key(base64_decode($str),$key); 
+    $tmp=''; 
+    for($i=0;$i<strlen($str);$i++){ 
+        $md5=$str[$i]; 
+        $tmp.=$str[++$i] ^ $md5; 
+    } 
+    return $tmp; 
+} 
+
+public function passport_key($str,$encrypt_key){ 
+    $encrypt_key=md5($encrypt_key); 
+    $ctr=0; 
+    $tmp=''; 
+    for($i=0;$i<strlen($str);$i++){ 
+        $ctr=$ctr==strlen($encrypt_key)?0:$ctr; 
+        $tmp.=$str[$i] ^ $encrypt_key[$ctr++]; 
+    } 
+    return $tmp; 
+} 
+
 	//订单搜索
 	public function select(){
 		$record = '';
