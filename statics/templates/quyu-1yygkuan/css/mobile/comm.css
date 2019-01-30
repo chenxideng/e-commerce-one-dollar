@@ -1350,3 +1350,14 @@ div.pageDialog {
   font-size: 14px;
   line-height: 14px;
 }
+
+.pg-percent{
+    position: relative;
+    top: -12px;
+    padding: 0 4px;
+    font-size: 12px;
+    line-height: 18px;
+    color: white;
+    background-color: #ff6600;
+    border-radius: 10px;
+ }

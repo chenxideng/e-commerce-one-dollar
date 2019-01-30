@@ -1021,27 +1021,47 @@
 	text-align:center;
 }
 .pOngoing {
-	height:42px;
-	line-height:42px;
-	padding:0 8px;
-	font-size:16px;
-	color:#f60;
+    color: #fff;
+    position: fixed;
+    background: #fff;
+    bottom: 0px;
+    z-index: 99999;
+    width: 100%;
+    max-width: 640px;
+    text-align: center;
+    padding: 10px 0px;
+    /*left: 0px;*/
+    border-bottom: none;
+    border-left: none;
+    border-right: none;
+    margin: 0;
+    border-radius: 0px;
+
+}
+.pOngoing .jiexiao{
+	border-radius: 30px;
+	background: #ff6600;
+	line-height: 42px;
+    font-size: 16px;
+    float: left;
+    width: 85%;
 }
 .pOngoing em {
-	margin:0 3px;
+    margin: 0 3px;
 }
+
 .pOngoing span {
-	display:inline-block;
-	width:98px;
-	height:28px;
-	line-height:28px;
-	font-size:14px;
-	text-align:center;
-	background:#f60;
-	color:#fff;
-	border-radius:5px;
-	margin-top:5px;
-	border:1px solid #ef6000;
+    display: inline-block;
+    width: 98px;
+    height: 28px;
+    line-height: 28px;
+    font-size: 14px;
+    text-align: center;
+    background: #FF5152;
+    color: #fff;
+    border-radius: 5px;
+    margin-top: 5px;
+    border: 1px solid #ef6000;
 }
 
 .pBtn {

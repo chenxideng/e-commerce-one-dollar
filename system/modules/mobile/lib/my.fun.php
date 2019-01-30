@@ -50,6 +50,15 @@ function percent($p,$t){
 	if($p<=0){return false;}
 	return sprintf('%.2f%%',$p/$t*100);
 }
+function percent_probar($p,$t){
+	if($p<=0){return false;}
+	$progress = round($p/$t*100)-8;
+	if($progress <= 0){
+		return sprintf('0'.'%');
+	} else {
+		return (string)($progress).'%';
+	}
+}
 function percent_to_int($p,$t){
 	if($p<=0){return false;}
 	return sprintf(round($p/$t*100)).'%';

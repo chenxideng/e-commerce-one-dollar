@@ -84,26 +84,13 @@
         <div class="pDetails {wc:if $item['q_end_time']!=''}pDetails-end{wc:if:end}">
                 <b>(第{wc:$item['qishu']}期) {wc:$item['title']} <span></span></b>
                 <p class="price">价值：<em class="arial gray">￥{wc:$item['money']}</em></p>
-                <style>
-                 .pg-percent{
-                    position: relative;
-                    top: -12px;
-                    margin-left: -8px;
-                    padding: 0 4px;
-                    font-size: 12px;
-                    line-height: 18px;
-                    color: white;
-                    background-color: #ff6600;
-                    border-radius: 10px;
-                 }
-                </style>
 				<div class="Progress-bar">
 					<p id="item-progress" class="u-progress" title="已完成{wc:fun:percent($item['canyurenshu'],$item['zongrenshu'])}">
 						<span class="pgbar" style="width:{wc:$item['canyurenshu']/$item['zongrenshu']*100}%;">
 							<span class="pging"></span>
 						</span>
 					</p>
-                    <span class="pg-percent" style="left: {wc:fun:percent($item['canyurenshu'],$item['zongrenshu'])};">{wc:fun:percent_to_int($item['canyurenshu'],$item['zongrenshu'])}</span>
+                    <span class="pg-percent" style="left: {wc:fun:percent_probar($item['canyurenshu'],$item['zongrenshu'])};">{wc:fun:percent_to_int($item['canyurenshu'],$item['zongrenshu'])}</span>
             
 					<ul class="Pro-bar-li">
 						<li class="P-bar01"><em>{wc:$item['canyurenshu']}</em>已参与</li>
@@ -111,11 +98,20 @@
 						<li class="P-bar03"><em>{wc:$item['zongrenshu']-$item['canyurenshu']}</em>剩余</li>
 					</ul>
 				</div>
+            
 			{wc:if $item['q_end_time'] !=''}
                 <div class="pClosed">本期已揭晓</div>
 				{wc:if $itemxq==1}
-				<div class="pOngoing" codeid="{wc:$itemzx['id']}">第<em class="arial">{wc:$itemzx['qishu']}</em>期 正在进行中……<span class="fr">查看详情</span></div>
-				{wc:if:end}
+                <div class="pOngoing" codeid="{wc:$itemzx['id']}">
+                <a style="margin:0;width: 18%;height: 33px;" class="xiangxigws" href="{WEB_PATH}/mobile/mobile">
+                    <i style="margin: 6px auto;float: none;position: relative;">&nbsp;</i>
+                </a>
+                <div class="jiexiao" style="line-height: 35px;margin-left: 1%;width: 60%;height: 35px;">第<em class="arial">{wc:$itemzx['qishu']}</em>期 (正在进行中……)</div>
+                <a style="margin:0;width: 18%;height: 33px;" class="xiangxigw" href="{WEB_PATH}/mobile/cart/cartlist">
+                    <i style="margin: 6px auto;float: none;position: relative;" id="btnCart" class=""><em>1</em></i>
+                </a>
+            </div>
+			{wc:if:end}
            	{wc:elseif $item['zongrenshu']==$item['canyurenshu']}
 			  {wc:if $item['xsjx_time']!=0}
                <div id="divAutoRTime" class="pSurplus" time="{wc:$sysj}" timeAlt="{wc:fun:date('Y-m-d-H',$item['xsjx_time'])}"><p><span>限时揭晓</span>剩余时间：<em>00</em>时<em>00</em>分<em>00</em>秒</p></div>
@@ -167,7 +163,7 @@
             </dl>
         </div>
 
-        <div id="item-records">
+        <div id="item-records" style="padding-bottom:50px">
         <div class="item-records-tabs-menu">
             <div class="item-records-tabs-menu-participant active">
                 <span>参与记录</span>
