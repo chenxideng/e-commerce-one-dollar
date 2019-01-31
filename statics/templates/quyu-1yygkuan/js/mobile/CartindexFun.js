@@ -147,7 +147,6 @@ $(function() {
                     if (w.code == 0) {
                         //q.parent().prev().html('总共购买：<em class="arial">' + r + '</em>人次/<em class="orange arial">￥' + r + ".00</em>")
                         var ids = q.parent().prev().find(".proce").attr("ids");
-                        console.log("xxxxxxxxxxxxx==>",r ,":xxxxxxxxxxxxx==>",yjg);
                     }
                 }
             };
@@ -160,7 +159,6 @@ $(function() {
             var q = v.next().next();
             
             var yjg = v.attr('yunjiage');
-            console.log(v.next().next().next().next().attr("class"))
 
             var t = parseInt(q.val()) + w;
             if (t > 0 && t <= r) {
