@@ -255,19 +255,18 @@ class HEC
         $availableScores = $obj['data']['AvailableScores'];
         $displayName = $obj['data']['DisplayName'];
         $login_user=$this->db->GetOne("select * from `@#_member` where `username` = '$username' ORDER BY `uid` DESC LIMIT 1");
+
+        $time=time();
         if ($login_user['username'] == null){
-        	$time=time();
         	$decode = 0;
-        	$sql="INSERT INTO `@#_member`(username,nickname,money,img,emailcode,mobilecode,yaoqing,time) VALUES('$username','$displayName','$availableScores','photo/member.jpg','1','1','$decode','$time')";
+        	$sql="INSERT INTO `@#_member`(username,nickname,money,token,img,emailcode,mobilecode,yaoqing,time) VALUES('$username','$displayName','$availableScores','$token','photo/member.jpg','1','1','$decode','$time')";
         	$this->db->Query($sql);
         	$login_user=$this->db->GetOne("select * from `@#_member` where `username` = '$username' ORDER BY `uid` DESC LIMIT 1");
         	// echo $login_user['uid'] . '<br>'; 
         	// echo "insert";
         }
         else{
-        	
-        	$time=time();
-        	$sql="UPDATE `@#_member` SET money='$availableScores', nickname='$displayName', time='$time' WHERE username='$username'";
+        	$sql="UPDATE `@#_member` SET money='$availableScores', nickname='$displayName', token='$token', time='$time' WHERE username='$username'";
         	$this->db->Query($sql);
         	// echo $login_user['uid'] . '<br>';
         	// echo "update";

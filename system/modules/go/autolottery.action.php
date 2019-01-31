@@ -36,7 +36,6 @@ class autolottery extends SystemAction {
 	//ajax 商品揭晓
 	public function autolottery_ret_install(){
 
-
 		if(!isset($_POST['shopid'])){
 			echo '-1';exit;
 		}
@@ -99,21 +98,48 @@ class autolottery extends SystemAction {
 								`q_showtime` = 'Y'
 								 where `id` = '$id'");
 
-			if($u_go_info){
-					$q_2 = $this->db->Query("UPDATE `@#_member_go_record` SET `huode` = '$code' where `id` = '$u_go_info[id]'");
-			}else{
-					$q_2 = true;
+		if ($u_go_info['award_type'] == "tomoney"){
+			$time = time();
+			$title = $u_go_info['shopname'];
+			$money = sprintf("%.2f", $shop_info['money'] * 0.9);
+			$username = u_info['username'];
+			$uid = u_info['uid'];
+			$token = u_info['token'];
+			$obj = new HEC();
+			$billno = $obj->GUID();
+			$param_list = $obj->gen_transfer_param($username, $billno, 0);
+			$transfer_json = $obj->transfer($param_list, $username, $token);
+			echo $transfer_json;
+			echo '<br>';
+			if($transfer_json['code'] == 0){
+				$param_list = $obj->gen_notify_param($username, $billno, $money);
+				$notify_json = $obj->notify($param_list, $username, $token);
+				echo $notify_json;
+				echo '<br>';
+				if($$notify_json['code'] == 0){
+					$availableScores = $notify_json['data']['AvailableScores'];
+					$query_2 = $this->db->Query("UPDATE `@#_member` SET `money`='$availableScores' WHERE (`uid`='$uid')");			//金额
+					$query_3 = $info = $this->db->GetOne("SELECT * FROM  `@#_member` WHERE (`uid`='$uid') LIMIT 1");
+					$query_4 = $this->db->Query("INSERT INTO `@#_member_account` (`uid`, `type`, `pay`, `content`, `money`, `time`) VALUES ('$uid', '2', '$title', '变现了商品', '$money', '$time')");
+				}
 			}
 
-			$q_3 = $this->autolottery_install($shop_info);
-			if($q_1 && $q_2 && $q_3){
-					$this->db->Autocommit_commit();
-					//echo $code."云购码";exit;
-					echo '-6';exit;
-			}else{
-				$this->db->Autocommit_rollback();
-				echo '-2';exit;
-			}
+		}
+		if($u_go_info){
+				$q_2 = $this->db->Query("UPDATE `@#_member_go_record` SET `huode` = '$code' where `id` = '$u_go_info[id]'");
+		}else{
+				$q_2 = true;
+		}
+
+		$q_3 = $this->autolottery_install($shop_info);
+		if($q_1 && $q_2 && $q_3){
+				$this->db->Autocommit_commit();
+				//echo $code."云购码";exit;
+				echo '-6';exit;
+		}else{
+			$this->db->Autocommit_rollback();
+			echo '-2';exit;
+		}
 
 	}//
 
