@@ -126,7 +126,7 @@ $(function() {
         $("#ulRecommend > li").each(function() {
             var l = $(this);
             l.click(function() {
-                location.href = Gobal.Webpath+"/mobile/mobile/item/" + l.attr("id") 
+                //location.href = Gobal.Webpath+"/mobile/mobile/item/" + l.attr("id") 
             })
         })
     };

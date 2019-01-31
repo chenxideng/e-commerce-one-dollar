@@ -321,6 +321,7 @@
     font-size: 16px;
     text-align: center;
     line-height: 45px;
+    z-index:1000;
 }
 
 .tabs-wrap .goodsList > ul {
