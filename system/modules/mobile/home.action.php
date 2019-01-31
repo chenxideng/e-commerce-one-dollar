@@ -176,7 +176,7 @@ class home extends base {
          $xfsum=0;
 		if(!empty($account)){ 
 			foreach($account as $key=>$val){
-			  if($val['type']==1){
+			  if($val['type']==2){
 				$czsum+=$val['money'];		  
 			  }else{
 				$xfsum+=$val['money'];		  

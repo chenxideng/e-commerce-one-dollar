@@ -89,12 +89,12 @@ tr{height:40px;line-height:40px}
 			<li><b class="api_b">购买方式:</b> <font color="#0c0"><?php echo $record['pay_type']; ?>付款</font></li>
 			<li><b class="api_b">当前状态:</b> <font color="#0c0"><?php echo $record['status']; ?></font></li>		
 			<li><b class="api_b">订单状态:</b><select name="status">
-											<option value="<?php echo $status[2]; ?>"><?php echo $status[2]; ?></option>
-											<option value="未发货">未发货</option>
-											<option value="已发货">已发货</option>
-											<option value="已完成">已完成</option>
-											<option value="已作废">已作废</option>										
-										  </select>
+				<option value="<?php echo $status[2]; ?>"><?php echo $status[2]; ?></option>
+				<option value="未发货">未发货</option>
+				<option value="已发货">已发货</option>
+				<option value="已完成">已完成</option>
+				<option value="已作废">已作废</option>										
+			  </select>
 			</li>
 			<li><b class="api_b">物流公司:</b><input type="text" name="company" value="<?php echo $record['company']; ?>" class="input-text wid150"> 请自行填写物流公司名称</li>
 			<li><b class="api_b">快递单号:</b><input type="text" name="company_code" value="<?php echo $record['company_code']; ?>" class="input-text wid150"> 填写物流公司快递单号</li>
