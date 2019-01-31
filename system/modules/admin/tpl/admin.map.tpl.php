@@ -89,12 +89,8 @@ a:hover{text-decoration:underline;}
 <li class="title">界面管理</li>
 <li><a href="<?php echo G_MODULE_PATH; ?>/ments/navigation">导航条管理</a></li>
 <li><a href="<?php echo G_MODULE_PATH; ?>/slide">幻灯管理</a></li>
-<li class="title2">模板风格</li>
-        <li><a href="<?php echo G_MODULE_PATH; ?>/template/">模板设置</a></li>
-        <li><a href="<?php echo G_MODULE_PATH; ?>/template/">清空模板缓存</a></li>
-		<li><a href="<?php echo G_MODULE_PATH; ?>/template/see">查看模板</a></li>
-</ul>
-</div><div class="map-menu lf"><ul>
+</div><div class="map-menu lf">
+<ul>
 <li class="title">云应用</li>
     <li><a href="<?php echo WEB_PATH; ?>/api/upfile">在线升级</a></li>
     <li><a href="<?php echo WEB_PATH; ?>/api/plugin/get/bom">BOM检测</a></li>  
