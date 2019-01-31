@@ -39,29 +39,6 @@
 		{wc:php:start}
             $sysj=$item['xsjx_time']-time();
         {wc:php:end}
-        
-        <!-- 揭晓信息 -->
-        {wc:if $item['q_end_time']!=''}
-        <div class="pProcess pProcess2">
-    	    <div class="pResults">
-        	    <div class="pResultsL" onclick="location.href='{WEB_PATH}/mobile/mobile/userindex/{wc:$item[q_uid]}'">
-            	    <a>
-            	        <img src="{G_UPLOAD_PATH}/{wc:fun:get_user_key($item['q_uid'],'img')}">
-            	        <span>{wc:fun:get_user_name($item['q_uid'])}</span>
-            	    </a>
-                    <s></s>
-                </div>
-        	    <div class="pResultsR">
-                    <div class="g-snav">
-                        <div class="g-snav-lst">总共{wc:fun:_cfg('web_name_two')}<br><dd><b class="orange">{wc:$gorecode['gonumber']}</b><br>人</dd></div>
-                        <div class="g-snav-lst">揭晓时间<br><dd class="gray9"><span>{wc:fun:microt($item['q_end_time'])}</span></dd></div>
-                        <div class="g-snav-lst">{wc:fun:_cfg('web_name_two')}时间<br><dd class="gray9"><span>{wc:fun:microt($gorecode['time'])}</span></dd></div>
-                    </div>
-                </div>
-        	    <p><a href="{WEB_PATH}/mobile/mobile/calResult/{wc:$item['id']}" class="fr">查看计算结果</a>幸运{wc:fun:_cfg('web_name_two')}码：<b class="orange">{wc:$item['q_user_code']}</b></p>
-            </div>
-        </div>
-        {wc:if:end}
 
         <!-- 产品图 -->
         <div class="pPic pPicBor">
@@ -136,6 +113,30 @@
 
 			{wc:if:end}
         </div>
+        
+        <!-- 揭晓信息 -->
+        {wc:if $item['q_end_time']!=''}
+        <div class="pProcess pProcess2">
+            <div class="pResults">
+                <div class="pResultsL" onclick="location.href='{WEB_PATH}/mobile/mobile/userindex/{wc:$item[q_uid]}'">
+                    <a>
+                        <img src="{G_UPLOAD_PATH}/{wc:fun:get_user_key($item['q_uid'],'img')}">
+                        <span>{wc:fun:get_user_name($item['q_uid'])}</span>
+                    </a>
+                    <s></s>
+                </div>
+                <div class="pResultsR">
+                    <div class="g-snav">
+                        <div class="g-snav-lst" style="width:35%">总共购买<br><dd><b class="orange">{wc:$gorecode['gonumber']}</b><br>人次</dd></div>
+                        <div class="g-snav-lst">揭晓时间<br><dd class="gray9"><span>{wc:fun:microt($item['q_end_time'])}</span></dd></div>
+                        <div class="g-snav-lst">{wc:fun:_cfg('web_name_two')}时间<br><dd class="gray9"><span>{wc:fun:microt($gorecode['time'])}</span></dd></div>
+                    </div>
+                </div>
+                <p><a href="{WEB_PATH}/mobile/mobile/calResult/{wc:$item['id']}" class="fr">查看计算结果</a>幸运码：<b class="orange">{wc:$item['q_user_code']}</b></p>
+            </div>
+        </div>
+        {wc:if:end}
+
         <!-- 参与记录，商品详细，晒单导航 -->
         <div class="joinAndGet">
             <!-- 上期获得者 -->
