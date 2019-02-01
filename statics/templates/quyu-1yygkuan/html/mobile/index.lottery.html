@@ -2,7 +2,7 @@
 <!DOCTYPE html>
 <html>
 <head id="Head1"><meta http-equiv="Content-Type" content="text/html; charset=utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0, user-scalable=no, maximum-scale=1.0" /><title>
-	最新揭晓 - {wc:$webname}触屏版
+	最新揭晓
 </title><meta content="app-id=518966501" name="apple-itunes-app" /><meta content="yes" name="apple-mobile-web-app-capable" /><meta content="black" name="apple-mobile-web-app-status-bar-style" /><meta content="telephone=no" name="format-detection" />
 <link href="{G_TEMPLATES_CSS}/mobile/comm.css" rel="stylesheet" type="text/css" />
 <link href="{G_TEMPLATES_CSS}/mobile/lottery.css" rel="stylesheet" type="text/css" />
@@ -11,13 +11,8 @@
 </head>
 <body>
 <div class="h5-1yyg-v1" id="loadingPicBlock">
-    
-<!-- 栏目页面顶部 -->
 
 {wc:templates "mobile/index","header"}
-
-
-<!-- 内页顶部 -->
 
     <section class="revealed">
 	    <div id="divLottery" class="revCon">
@@ -37,7 +32,6 @@
         <li class="f_personal"> <a title="我的主页" href="{WEB_PATH}/mobile/home"> <i class="">&nbsp;</i> 我的主页 </a> </li>
     </ul>
   <script type="text/javascript">
-    //返回顶部
     $(function() {
         $("#btnGotoTop").click(function() {
             $("html,body").animate({
@@ -71,9 +65,6 @@ var Base={head:document.getElementsByTagName("head")[0]||document.documentElemen
 function GetVerNum(){var D=new Date();return D.getFullYear().toString().substring(2,4)+'.'+(D.getMonth()+1)+'.'+D.getDate()+'.'+D.getHours()+'.'+(D.getMinutes()<10?'0':D.getMinutes().toString().substring(0,1))}
 Base.getScript('{G_TEMPLATES_JS}/mobile/Bottom.js?v='+GetVerNum());
 </script>
-
-
-
 </div>
 </body>
 </html>

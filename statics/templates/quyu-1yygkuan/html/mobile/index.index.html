@@ -22,14 +22,8 @@
 </head>
 <body>
 <div class="h5-1yyg-v1" id="loadingPicBlock">    
-
-<!-- 内页顶部 -->
-
     <input name="hidStartAt" type="hidden" id="hidStartAt" value="0" />
-    <!-- 焦点图 -->
-    <section id="sliderBox" class="hotimg"></section>
-    <!-- 小导航 -->
-    
+    <section id="sliderBox" class="hotimg"></section>   
 	<section class="navautos">
 	<div class="textnav2">
     </div>
@@ -105,7 +99,6 @@
 		})  
 	</script>
     
-    <!-- 热门推荐 -->
     <section class="g-main">
 	    <div class="m-tt1">
 		    <h2 class="fl"><a href="{WEB_PATH}/mobile/mobile/glist">热门推荐</a></h2>
@@ -122,7 +115,6 @@
 		                    <a href="{WEB_PATH}/mobile/mobile/item/{wc:$renqi['id']}" class="u-lott-pic">
 		                        <img src="{G_TEMPLATES_IMAGE}/wap_img/loading.gif" src2="{G_UPLOAD_PATH}/{wc:$renqi['thumb']}" border=0 alt="" />
 		                    </a>
-		                    <!--<ins class="u-promo">价值:￥{wc:$renqi['money']}</ins>-->
 		                </div>
 		                <div style="margin-top:15px;width:100%;margin-left:0px;" class="goodsListR">
 		                	<h2 style="overflow:hidden;font-size:14px;height:36px;word-break:break-all;display:-webkit-box;padding:0 5%;-webkit-line-clamp:2" id="{wc:$renqi['id']}">{wc:$renqi['title']}</h2>
@@ -136,7 +128,6 @@
 							</p>
 							<ul class="Pro-bar-li">
 								<li class="P-bar01"><em>{wc:$renqi['canyurenshu']}</em>已参与</li>
-								<!--<li class="P-bar02"><em>{wc:$renqi['zongrenshu']}</em>总需人次</li>-->
 								<li class="P-bar03"><em>{wc:$renqi['zongrenshu']-$renqi['canyurenshu']}</em>剩余</li>
 							</ul>
 							<div class="pRate item_bottom_container buy_container">
@@ -153,7 +144,6 @@
 	    </article>
     </section>
     
-
 <footer class="footer">
 	<a id="btnTop" href="javascript:;" class="z-top" style="display:none;"><b class="z-arrow"></b></a>
     <div class="footerdi" style="bottom: 0px;">
@@ -165,7 +155,6 @@
 		    <li class="f_personal"> <a title="我的主页" href="{WEB_PATH}/mobile/home"> <i class="">&nbsp;</i> 我的主页 </a> </li>
 		</ul>
   <script type="text/javascript">
-    //返回顶部
     $(function() {
         $("#btnGotoTop").click(function() {
             $("html,body").animate({
@@ -210,7 +199,6 @@
 		$("#pageDialogBG").stop().fadeIn(1000);
 		$("#pageDialogBG .Prompt").append('<s></s>'+dat);
 		$("#pageDialogBG").fadeOut(1000);
-		//购物车数量
 		$.getJSON('{WEB_PATH}/mobile/ajax/cartnum',function(data){
 			$("#btnCart").append('<em>'+data.num+'</em>');
 		});

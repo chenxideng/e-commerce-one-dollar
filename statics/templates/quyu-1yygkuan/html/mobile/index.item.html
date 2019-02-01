@@ -15,32 +15,15 @@
 </head>
 <body>
 <div class="h5-1yyg-v1" id="loadingPicBlock">
-    
-<!-- 栏目页面顶部 -->
-
-
-<!-- 内页顶部 -->
-
 {wc:templates "mobile/index","top"}
-<!-- 内页顶部 -->
 
-    <input name="hidGoodsID" type="hidden" id="hidGoodsID" value="{wc:$itemlist[0]['q_uid']}"/>   <!--上期获奖者id-->
-    <input name="hidCodeID" type="hidden" id="hidCodeID" value="{wc:$item['id']}"/>     <!--本期商品id-->
+    <input name="hidGoodsID" type="hidden" id="hidGoodsID" value="{wc:$itemlist[0]['q_uid']}"/>
+    <input name="hidCodeID" type="hidden" id="hidCodeID" value="{wc:$item['id']}"/>
     <section class="goodsCon pCon">
-	    <!-- 导航 -->
-        <!--
-        <div id="divPeriod" class="pNav">
-            <div class="loading"><b></b>正在加载</div>
-    	    <ul class="slides">
-    	       {wc:$loopqishu}
-            </ul>
-        </div>
-		-->
 		{wc:php:start}
             $sysj=$item['xsjx_time']-time();
         {wc:php:end}
 
-        <!-- 产品图 -->
         <div class="pPic pPicBor">
             <div class="pPic2">
     	        <div id="sliderBox" class="pImg">
@@ -57,7 +40,6 @@
 			 {wc:if:end}
         </div>
     
-        <!-- 条码信息 -->
         <div class="pDetails {wc:if $item['q_end_time']!=''}pDetails-end{wc:if:end}">
                 <b>(第{wc:$item['qishu']}期) {wc:$item['title']} <span></span></b>
                 <p class="price">价值：<em class="arial gray">￥{wc:$item['money']}</em></p>
@@ -110,11 +92,9 @@
                     <i style="margin: 6px auto;float: none;position: relative;" id="btnCart" class="">&nbsp;</i>
                 </a>
             </div>
-
 			{wc:if:end}
         </div>
         
-        <!-- 揭晓信息 -->
         {wc:if $item['q_end_time']!=''}
         <div class="pProcess pProcess2">
             <div class="pResults">
@@ -137,9 +117,7 @@
         </div>
         {wc:if:end}
 
-        <!-- 参与记录，商品详细，晒单导航 -->
         <div class="joinAndGet">
-            <!-- 上期获得者 -->
             {wc:if $item['q_end_time'] =='' and $item['qishu']>1}
             <ul id="prevPeriod" class="m-round" codeid="{wc:$gorecode['shopid']}" uweb="{wc:$gorecode['uid']}">
                 <li class="fl"><s></s><img src="{G_TEMPLATES_IMAGE}/mobile/loading.gif" src2="{G_UPLOAD_PATH}/{wc:fun:get_user_key($itemlist[0]['q_uid'],'img')}"/></li>
@@ -156,11 +134,7 @@
             </ul>
             {wc:if:end}
     	    <dl>
-    	        <!--<a href="{WEB_PATH}/mobile/mobile/buyrecords/{wc:$item['id']}"><b class="fr z-arrow"></b>所有{wc:fun:_cfg('web_name_two')}记录</a>-->
 				<a href="{WEB_PATH}/mobile/mobile/goodsdesc/{wc:$item['id']}"><b class="fr z-arrow"></b>图文详情<em>（建议WIFI下使用）</em> </a>
-				 
-				<!--<a href="{WEB_PATH}/mobile/mobile/goodspost/{wc:$item['sid']}"><b class="fr z-arrow"></b>已有<span class="orange arial">{wc:fun:count($shaidan)}</span>个幸运者晒单<strong class="orange arial">{wc:$sum}</strong>条评论</a>-->
-				 
             </dl>
         </div>
 
@@ -197,7 +171,6 @@
                 </li>
                 {wc:loop:end}
                 </ul>
-
             </div>
             <div class="item-records-tabs-winner" style="display: none;">
                 <ul class="item-records-tabs-winner-list">
@@ -220,17 +193,14 @@
             </div>
         </div>
     </div>
-
     </section>
     <script type="text/javascript">
-    //切换参与记录和获得者显示面板
     function changeRecordTab(){
         $('#item-records .item-records-tabs-menu-winner').on('click', function() {
             $(this).addClass('active');
             $('#item-records .item-records-tabs-menu-participant').removeClass('active');
             $('#item-records .item-records-tabs-participant').hide();
             $('#item-records .item-records-tabs-winner').show();
-
         });
         $('#item-records .item-records-tabs-menu-participant').on('click', function() {
             $(this).addClass('active');
@@ -240,74 +210,50 @@
         });
     }
 
-
-    //加载参与记录数据
     function init_json(parm) {
         $("#urladdress").val('');
         $("#pagenum").val('');
         $.getJSON('{WEB_PATH}/mobile/mobile/itemsajax/' + parm, function(data) {
-            // if (data[0].sum){
-            //     var fg = parm.split("/");
-            //     $("#urladdress").val(fg[0] + '/' + fg[1]);
-            //     $("#pagenum").val(data[0].page);
-            
-                var ul = '';
-                 for (var i = 0; i < data.length; i++) {
-                     ul += '<li>';
-                     ul += '<a href="{WEB_PATH}/mobile/mobile/userindex/'+data[i].uid+'">';
-                     ul += '<div class="item-records-tabs-participant-left">';
-                     ul += '<div class="item-records-tabs-participant-left-avatar">';
-                     if (data[i].uphoto != 'photo/member.jpg')
-                     {
+            var ul = '';
+             for (var i = 0; i < data.length; i++) {
+                 ul += '<li>';
+                 ul += '<a href="{WEB_PATH}/mobile/mobile/userindex/'+data[i].uid+'">';
+                 ul += '<div class="item-records-tabs-participant-left">';
+                 ul += '<div class="item-records-tabs-participant-left-avatar">';
+                 if (data[i].uphoto != 'photo/member.jpg')
+                 {
 
-                         ul += '<img src="/statics/uploads/' + data[i].uphoto + '" alt="头像" />';
-                     }else if(data[i].headimg != ''){
+                     ul += '<img src="/statics/uploads/' + data[i].uphoto + '" alt="头像" />';
+                 }else if(data[i].headimg != ''){
 
-                         ul += '<img src="/statics/uploads/' + data[i].headimg + '" alt="头像" />';
-                     }else{
+                     ul += '<img src="/statics/uploads/' + data[i].headimg + '" alt="头像" />';
+                 }else{
 
-                         ul += '<img src="/statics/uploads/' + data[i].uphoto + '" alt="头像" />';
-                     }
-                     ul += '</div>';
-                     ul += '</div>';
-                     ul += '<div class="item-records-tabs-participant-center">';
-                     ul += '<div class="item-records-tabs-participant-center-name">';
-                     ul += '<span>'+data[i].username+'</span>';
-                     ul += '</div>';
-                     ul += '<div class="item-records-tabs-participant-center-time">';
-                     ul += '<span>'+data[i].time2+'</span>';
-                     ul += '</div>';
-                     ul += '</div>';
-                     ul += '<a href="{WEB_PATH}/mobile/mobile/userindex1/'+data[i].shopid+'/'+data[i].uid+'"><div class="item-records-tabs-participant-right">';
-                     ul += '<div class="item-records-tabs-participant-right-number">';
-                     ul += '<span class="llg">'+data[i].gonumber+'</span>&ensp;人次';
-                     ul += '</div>';
-                     ul += '<div class="item-records-tabs-participant-right-arrow-container">';
-                     ul += '<span class="item-records-tabs-participant-right-arrow"></span>';
-                     ul += '</div>';
-                     ul += '</div></a>';
-                     ul += '</a>';
-                     ul += '</li>';
-
+                     ul += '<img src="/statics/uploads/' + data[i].uphoto + '" alt="头像" />';
                  }
+                 ul += '</div>';
+                 ul += '</div>';
+                 ul += '<div class="item-records-tabs-participant-center">';
+                 ul += '<div class="item-records-tabs-participant-center-name">';
+                 ul += '<span>'+data[i].username+'</span>';
+                 ul += '</div>';
+                 ul += '<div class="item-records-tabs-participant-center-time">';
+                 ul += '<span>'+data[i].time2+'</span>';
+                 ul += '</div>';
+                 ul += '</div>';
+                 ul += '<a href="{WEB_PATH}/mobile/mobile/userindex1/'+data[i].shopid+'/'+data[i].uid+'"><div class="item-records-tabs-participant-right">';
+                 ul += '<div class="item-records-tabs-participant-right-number">';
+                 ul += '<span class="llg">'+data[i].gonumber+'</span>&ensp;人次';
+                 ul += '</div>';
+                 ul += '<div class="item-records-tabs-participant-right-arrow-container">';
+                 ul += '<span class="item-records-tabs-participant-right-arrow"></span>';
+                 ul += '</div>';
+                 ul += '</div></a>';
+                 ul += '</a>';
+                 ul += '</li>';
 
-
-                $('.item-records-tabs-participant-list').append(ul);
-
-                // if (data[0].page <= data[0].sum) {
-                //     $("#btnLoadMore").css('display', 'block');
-                //     $("#btnLoadMore2").css('display', 'none');
-                //     $("#btnLoadMore3").css('display', 'none');
-                // } else if (data[0].page > data[0].sum) {
-                //     $("#btnLoadMore").css('display', 'none');
-                //     $("#btnLoadMore2").css('display', 'none');
-                //     $("#btnLoadMore3").css('display', 'block');
-                // }
-            // }else {
-            //     $("#btnLoadMore").css('display', 'none');
-            //     $("#btnLoadMore2").css('display', 'block');
-            //     $("#btnLoadMore3").css('display', 'none');
-            // }
+             }
+            $('.item-records-tabs-participant-list').append(ul);
         });
     }
 
@@ -354,20 +300,14 @@
                 ul += '</div>';
                 ul += '</a>';
                 ul += '</li>';
-
             }
-
             $('.item-records-tabs-winner-list').append(ul);
-
-
         });
     }
 
     $(document).ready(function() {
-        //打开页面自动加载
         init_json("214031/list/10");
         init_json1("214031/list/10");
-        //下拉加载更多
         $(window).scroll(function() {
             if ($(document).height() - $(this).scrollTop() - $(this).height() < 100 && $("#btnLoadMore").css('display') != 'none') {
                 var url = $("#urladdress").val(),
@@ -375,22 +315,17 @@
                 init_json(url + '/10/' + page);
             }
         });
-
-        //切换记录面板
         changeRecordTab();
         $('.llg').click(function () {
             alert(1);
         });
     });
-
-
-    </script>
+</script>
 <script language="javascript" type="text/javascript">
   var Path = new Object();
   Path.Skin="{G_TEMPLATES_STYLE}";  
   Path.Webpath = "{WEB_PATH}";
-  
-var Base = {
+    var Base = {
     head: document.getElementsByTagName("head")[0] || document.documentElement,
     Myload: function(B, A) {
         this.done = false;
@@ -435,13 +370,10 @@ function GetVerNum() {
     return D.getFullYear().toString().substring(2, 4) + '.' + (D.getMonth() + 1) + '.' + D.getDate() + '.' + D.getHours() + '.' + (D.getMinutes() < 10 ? '0': D.getMinutes().toString().substring(0, 1))
 }
 Base.getScript('{G_TEMPLATES_JS}/mobile/Bottom.js');
-
-
 </script>
 <script>
 $(function(){
   $(".blue").click(function(){
-   
      url="{WEB_PATH}/uname/{wc:fun:idjia($itemlist[0]['q_uid'])}";
 	 window.location.href=url;
   
@@ -450,9 +382,7 @@ $(function(){
   $(".orange.arial").click(function(){
      url="{WEB_PATH}/mobile/mobile/dataserver/{wc:$itemlist[0]['id']}";
 	 window.location.href=url;
-  
   });
-
 })
 
 </script>

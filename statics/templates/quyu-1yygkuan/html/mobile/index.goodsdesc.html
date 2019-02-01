@@ -16,12 +16,6 @@ border-left: none !important;
 </head>
 <body>
 <div class="h5-1yyg-v1" id="loadingPicBlock">
-    
-<!-- 栏目页面顶部 -->
-
-
-<!-- 内页顶部 -->
-
     <header class="g-header">
         <div class="head-l">
 	        <a href="javascript:;" onclick="history.go(-1)" class="z-HReturn"><img style="width:20px;padding-top:4px;" src="{G_TEMPLATES_IMAGE}/mobile/back.png"></a>
@@ -30,18 +24,13 @@ border-left: none !important;
         <div class="head-r"><a href="{WEB_PATH}/mobile/home"><img style="width:20px;padding-top:4px;" src="{G_TEMPLATES_IMAGE}/mobile/to_home.png"></a>
         </div>
     </header>
-
     <input name="hidCodeID" type="hidden" id="hidCodeID" value="18101" />
     <input name="hidIsEnd" type="hidden" id="hidIsEnd" value="1" />
-
-    <!-- 云购记录 -->
     <section id="buyRecordPage" class="goodsCon">
         <div id="divRecordList" class="recordCon z-minheight" style="display:block;">
             {wc:$desc['content']}
         </div>
-        
     </section>
-
     
 <footer class="footer">
     <a id="btnTop" href="javascript:;" class="z-top" style="display:none;"><b class="z-arrow"></b></a>
@@ -54,7 +43,6 @@ border-left: none !important;
             <li class="f_personal"> <a title="我的主页" href="{WEB_PATH}/mobile/home"> <i class="">&nbsp;</i> 我的主页 </a> </li>
         </ul>
   <script type="text/javascript">
-    //返回顶部
     $(function() {
         $("#btnGotoTop").click(function() {
             $("html,body").animate({

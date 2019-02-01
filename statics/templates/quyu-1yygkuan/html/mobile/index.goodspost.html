@@ -6,12 +6,6 @@
 <meta content="app-id=518966501" name="apple-itunes-app" /><meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0, user-scalable=no, maximum-scale=1.0" /><meta content="yes" name="apple-mobile-web-app-capable" /><meta content="black" name="apple-mobile-web-app-status-bar-style" /><meta content="telephone=no" name="format-detection" /><link href="{G_TEMPLATES_CSS}/mobile/comm.css" rel="stylesheet" type="text/css" /><link href="{G_TEMPLATES_CSS}/mobile/single.css" rel="stylesheet" type="text/css" /><script src="{G_TEMPLATES_JS}/mobile/jquery190.js" language="javascript" type="text/javascript"></script><script id="pageJS" data="{G_TEMPLATES_JS}/mobile/BuyRecord.js" language="javascript" type="text/javascript"></script></head>
 <body>
 <div class="h5-1yyg-v1" id="loadingPicBlock">
-    
-<!-- 栏目页面顶部 -->
-
-
-<!-- 内页顶部 -->
-
     <header class="g-header">
         <div class="head-l">
 	        <a href="javascript:;" onclick="history.go(-1)" class="z-HReturn"><img style="width:20px;padding-top:4px;" src="{G_TEMPLATES_IMAGE}/mobile/go_back.png"></a>
@@ -20,11 +14,9 @@
         <div class="head-r"><a href="{WEB_PATH}/mobile/home"><img style="width:20px;padding-top:4px;" src="{G_TEMPLATES_IMAGE}/mobile/to_home.png"></a>
         </div>
     </header>
-
     <input name="hidCodeID" type="hidden" id="hidCodeID" value="18101" />
     <input name="hidIsEnd" type="hidden" id="hidIsEnd" value="1" />
 
-    <!-- 晒单记录 -->
     <section class="goodsCon">
 	    <div class="cSingleCon">
 			<p class="cEntry">已有<em class="orange">{wc:fun:count($shaidan)}</em>个幸运者晒单，<em class="orange">{wc:$sum}</em>条评论！</p>
@@ -57,9 +49,7 @@
 			</div>
         </div>
     </section>
-   
 
-    
 <footer class="footer">
 	<a id="btnTop" href="javascript:;" class="z-top" style="display:none;"><b class="z-arrow"></b></a>
     <div class="footerdi" style="bottom: 0px;">
@@ -71,7 +61,6 @@
 		    <li class="f_personal"> <a title="我的主页" href="{WEB_PATH}/mobile/home"> <i class="">&nbsp;</i> 我的主页 </a> </li>
 		</ul>
   <script type="text/javascript">
-    //返回顶部
     $(function() {
         $("#btnGotoTop").click(function() {
             $("html,body").animate({
@@ -96,7 +85,6 @@
 <input name="hidLineLink" type="hidden" id="hidLineLink" value="{WEB_PATH}/mobile/mobile/">
 </footer>
 <script language="javascript" type="text/javascript">
-//跳转页面
 	$(".cSingleInfo li:not(:first)").click(function(){
 		var id=$(this).parent().parent().attr('id');
 		if(id){

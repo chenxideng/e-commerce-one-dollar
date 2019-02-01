@@ -2,7 +2,7 @@
 <html>
 <head>
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-    <title>购物车 - {wc:$webname}触屏版</title>
+    <title>购物车</title>
     <meta content="app-id=518966501" name="apple-itunes-app" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0, user-scalable=no, maximum-scale=1.0"/>
     <meta content="yes" name="apple-mobile-web-app-capable" />
@@ -16,9 +16,6 @@
 </head>
 <body>
 <div class="h5-1yyg-v1" id="loadingPicBlock">
-    
-<!-- 栏目页面顶部 -->
-<!-- 内页顶部 -->
     <header class="g-header">
         <div class="head-l">
 	        <a href="javascript:;" onclick="history.go(-1)" class="z-HReturn"><img style="width:20px;padding-top:4px;" src="{G_TEMPLATES_IMAGE}/mobile/go_back.png"></a>
@@ -32,55 +29,48 @@
     <input name="hidLogined" type="hidden" id="hidLogined" value="1" />
     <section class="clearfix g-Cart">
 	    {wc:if $shop!=0}
-	        <article class="clearfix m-round g-Cart-list">
-	            <ul id="cartBody">
-				{wc:php:start}
-				$buyshopmoney=0;
-				{wc:php:end}
-	            {wc:loop $shoplist  $key $val}
-				{wc:php:start}
-            	   $num = count($shoplist);
-				   $buyshopmoney+=$Mcartlist[$val['id']]['money'];
-                {wc:php:end}    
-					<li>		            
-						<a class="fl u-Cart-img" href="{WEB_PATH}/mobile/mobile/item/{wc:$val['id']}">
-							<img src="{G_TEMPLATES_IMAGE}/loading.gif" src2="{G_UPLOAD_PATH}/{wc:$val['thumb']}" border="0" alt=""/>
-						</a>
-						<div class="u-Cart-r">
-							<p class="z-Cart-tt"><a href="{WEB_PATH}/mobile/mobile/item/{wc:$val['id']}" class="gray6">(第{wc:$val['qishu']}期) {wc:$val['title']}</a></p>
-							<ins class="z-promo gray9">剩余<em class="arial">{wc:$val['zongrenshu']-$val['canyurenshu']}</em>人次  </ins>
-							<!--<p class="gray9">总共{wc:fun:_cfg('web_name_two')}：<em class="arial">{wc:$Mcartlist[$val['id']]['num']}</em>人次/<em class="orange arial">￥{wc:$Mcartlist[$val['id']]['money']}.00</em></p>-->
-							<p class="f-Cart-Other">
-								<input type="hidden" value="1.00" class="yunjiage{wc:$val['id']}">
-								<a href="javascript:;" class="fr z-del" name="delLink" cid="{wc:$val['id']}"></a>
-								<a href="javascript:;" class="fl z-jian {wc:if $Mcartlist[$val['id']]['num']==1}z-jiandis{wc:if:end}">-</a>
-								<input id="txtNum{wc:$val['id']}" name="num" type="text" maxlength="7" yunjiage = "{wc:$val['yunjiage']}" value="{wc:$Mcartlist[$val['id']]['num']}" class="fl z-amount" />
-								<a href="javascript:;" class="fl z-jia {wc:if $Mcartlist[$val['id']]['num']==$val['zongrenshu']}z-jiadis{wc:if:end}">+</a>
-								<input id="shuliang{wc:$val['id']}" type="hidden" value="{wc:$Mcartlist[$val['id']]['num']}">
-								<input type="hidden" value="{wc:$val['zongrenshu']-$val['canyurenshu']}" />
-								<input type="hidden" value="1.00" class="yunjiage{wc:$val['id']}"/>
-							</p>
-						</div>
-						<div style="overflow:hidden;float: left;color: #333;text-align: center;line-height: 28px;font-size: 14px;position: relative;margin-bottom: 5px;width: 100%;padding-left: 90px;margin-top: 6px;">
-                        <ul class="tags" style="margin: 0 auto;width: 100%;">
-                            <li id="Li1" data-id="{wc:$val['id']}" data-val="10">10</li>
-                            <li id="Li2" data-id="{wc:$val['id']}" data-val="50">50</li>
-                            <li id="Li3" data-id="{wc:$val['id']}" data-val="100">100</li>
-                            <li id="Li4" data-id="{wc:$val['id']}" data-val="200">200</li>
-                            <li id="Li5" data-id="{wc:$val['id']}" data-val="{wc:$val['zongrenshu']-$val['canyurenshu']}">包尾</li>
-                        </ul>												
-                    </div>
-					</li>
-				{wc:loop:end}
-				
-	            </ul>
-	        </article>
-	      <!--
-	    <div id="divBtmMoney" class="g-Total-bt"><p>总共{wc:fun:_cfg('web_name_two')}
-			<span class="orange arial z-user">{wc:$num}</span>个商品  合计金额：
-			<span class="orange arial">{wc:$buyshopmoney}.00</span> 元</p>
-			<a href="javascript:;" class="orgBtn">结 算</a>
-		</div>-->
+        <article class="clearfix m-round g-Cart-list">
+            <ul id="cartBody">
+			{wc:php:start}
+			$buyshopmoney=0;
+			{wc:php:end}
+            {wc:loop $shoplist  $key $val}
+			{wc:php:start}
+        	   $num = count($shoplist);
+			   $buyshopmoney+=$Mcartlist[$val['id']]['money'];
+            {wc:php:end}    
+				<li>		            
+					<a class="fl u-Cart-img" href="{WEB_PATH}/mobile/mobile/item/{wc:$val['id']}">
+						<img src="{G_TEMPLATES_IMAGE}/loading.gif" src2="{G_UPLOAD_PATH}/{wc:$val['thumb']}" border="0" alt=""/>
+					</a>
+					<div class="u-Cart-r">
+						<p class="z-Cart-tt"><a href="{WEB_PATH}/mobile/mobile/item/{wc:$val['id']}" class="gray6">(第{wc:$val['qishu']}期) {wc:$val['title']}</a></p>
+						<ins class="z-promo gray9">剩余<em class="arial">{wc:$val['zongrenshu']-$val['canyurenshu']}</em>人次  </ins>
+						<p class="f-Cart-Other">
+							<input type="hidden" value="1.00" class="yunjiage{wc:$val['id']}">
+							<a href="javascript:;" class="fr z-del" name="delLink" cid="{wc:$val['id']}"></a>
+							<a href="javascript:;" class="fl z-jian {wc:if $Mcartlist[$val['id']]['num']==1}z-jiandis{wc:if:end}">-</a>
+							<input id="txtNum{wc:$val['id']}" name="num" type="text" maxlength="7" yunjiage = "{wc:$val['yunjiage']}" value="{wc:$Mcartlist[$val['id']]['num']}" class="fl z-amount" />
+							<a href="javascript:;" class="fl z-jia {wc:if $Mcartlist[$val['id']]['num']==$val['zongrenshu']}z-jiadis{wc:if:end}">+</a>
+							<input id="shuliang{wc:$val['id']}" type="hidden" value="{wc:$Mcartlist[$val['id']]['num']}">
+							<input type="hidden" value="{wc:$val['zongrenshu']-$val['canyurenshu']}" />
+							<input type="hidden" value="1.00" class="yunjiage{wc:$val['id']}"/>
+						</p>
+					</div>
+					<div style="overflow:hidden;float: left;color: #333;text-align: center;line-height: 28px;font-size: 14px;position: relative;margin-bottom: 5px;width: 100%;padding-left: 90px;margin-top: 6px;">
+                    <ul class="tags" style="margin: 0 auto;width: 100%;">
+                        <li id="Li1" data-id="{wc:$val['id']}" data-val="10">10</li>
+                        <li id="Li2" data-id="{wc:$val['id']}" data-val="50">50</li>
+                        <li id="Li3" data-id="{wc:$val['id']}" data-val="100">100</li>
+                        <li id="Li4" data-id="{wc:$val['id']}" data-val="200">200</li>
+                        <li id="Li5" data-id="{wc:$val['id']}" data-val="{wc:$val['zongrenshu']-$val['canyurenshu']}">包尾</li>
+                    </ul>												
+                </div>
+				</li>
+			{wc:loop:end}
+			
+            </ul>
+        </article>
 		<div id="divBtmMoney" class="g-Total-bt" style="width: 100%;">
             <p style="display: block;float: left;text-align: left;padding-left: 10px;">
                 共<span class="orange arial z-user">{wc:$num}</span>件商品<br>
@@ -108,7 +98,6 @@
 		    <li class="f_personal"> <a title="我的主页" href="{WEB_PATH}/mobile/home"> <i class="">&nbsp;</i> 我的主页 </a> </li>
 		</ul>
   <script type="text/javascript">
-    //返回顶部
     $(function() {
         $("#btnGotoTop").click(function() {
             $("html,body").animate({

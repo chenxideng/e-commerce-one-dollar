@@ -3,7 +3,7 @@
 <html>
 <head>
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-    <title>晒单 - {wc:$webname}触屏版</title>     
+    <title>晒单</title>     
     <meta content="app-id=518966501" name="apple-itunes-app" />     
     <meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0, user-scalable=no, maximum-scale=1.0"/>
     <meta content="yes" name="apple-mobile-web-app-capable" />     
@@ -16,14 +16,8 @@
 </head>
 <body>
 <div class="h5-1yyg-v1">
-    
-<!-- 栏目页面顶部 -->
 
 {wc:templates "mobile/index","header"}
-
-
-<!-- 内页顶部 -->
-
     
     <div id="navBox" class="g-snav m_listNav">
         <div class="g-snav-lst z-sgl-crt"><a href="javascript:;" class="gray9">最新晒单</a><b></b></div>
@@ -31,7 +25,6 @@
         <div class="g-snav-lst"><a href="javascript:;" class="gray9">评论最多</a></div>
     </div>
 
-    <!-- 晒单列表 -->
     <section>	
 		<div class="cSingleCon" id="loadingPicBlock">
 		    <div id="postBox10" class="cSingleCon2"></div>
@@ -112,13 +105,13 @@ $(function(){
 			break;
 		}
 	});
-	//加载更多
+
 	$("#btnLoadMore").click(function(){		
 		var url=$("#urladdress").val(),
 			page=$("#pagenum").val();
 		sdajax(url+'/'+page);
 	});
-	//返回顶部
+
 	$(window).scroll(function(){
 		if($(window).scrollTop()>50){
 			$("#btnTop").show();
@@ -129,7 +122,7 @@ $(function(){
 	$("#btnTop").click(function(){
 		$("body").animate({scrollTop:0},10);
 	});
-	//跳转页面
+
 	var gt='.cSingleInfo .maxImg';
 	$(document).on('click',gt,function(){
 		var id=$(this).attr('id');
