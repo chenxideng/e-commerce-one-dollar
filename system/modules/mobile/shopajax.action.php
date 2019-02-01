@@ -212,9 +212,9 @@ class shopajax extends base {
 	   $FIdx=safe_replace($this->segment(4));
 	   $EIdx=10;//safe_replace($this->segment(5));
 
-	    $Rechargelist=$this->db->GetList("select * from `@#_member_account` where `uid`='$member[uid]' and `pay` = '账户' and `type`='1'  ORDER BY time DESC");
+	    $Rechargelist=$this->db->GetList("select * from `@#_member_account` where `uid`='$member[uid]' and `pay` = '账户' and `type`='2'  ORDER BY time DESC");
 
-	    $Recharge['listItems']=$this->db->GetList("select * from `@#_member_account` where `uid`='$member[uid]' and `pay` = '账户' and `type`='1'  ORDER BY time DESC limit $FIdx,$EIdx ");
+	    $Recharge['listItems']=$this->db->GetList("select * from `@#_member_account` where `uid`='$member[uid]' and `pay` = '账户' and `type`='2'  ORDER BY time DESC limit $FIdx,$EIdx ");
 
         if(empty($Recharge['listItems'])){
 		    $Recharge['code']=1;

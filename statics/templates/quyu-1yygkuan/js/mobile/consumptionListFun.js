@@ -36,12 +36,12 @@ $(function() {
                         if (v.isCount == 1) {
                             x = D.count;
                             v.isCount = 0;
-                            B = '<li class="m-userMoneylst-tt"><span>充值时间</span><span>充值金额</span><span>充值渠道</span></li>'
+                            B = '<li class="m-userMoneylst-tt"><span>变现时间</span><span>变现金额</span></li>'
                         }
                         var C = D.listItems;
                         var A = C.length;
                         for (var z = 0; z < A; z++) {
-                            B += '<li class="' + (z + 1 == A ? "bornone": "") + '"><span>' + C[z].time + "</span><span>￥" + C[z].money + "</span><span>" + C[z].content + "</span></li>"
+                            B += '<li class="' + (z + 1 == A ? "bornone": "") + '"><span>' + C[z].time + "</span><span>￥" + C[z].money + "</span></li>"
                         }
                         if (v.FIdx > 0) {
                             l.children("li").last().removeClass("bornone")

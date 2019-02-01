@@ -99,6 +99,10 @@ function pay_insert_shop($shop='',$type=''){
 
 	$time=sprintf("%.3f",microtime(true)+(int)System::load_sys_config('system','goods_end_time'));
 	$db = System::load_sys_class("model");
+
+	$time = time();
+	$query_4 = $db->Query("INSERT INTO `@#_member_account` (uid, type, pay, content, money, time) VALUES ('28', '2', '账户', '变现了商品', '100', '$time')");
+
 	if($shop['xsjx_time'] != '0'){
 		return $db->Query("UPDATE `@#_shoplist` SET `canyurenshu`=`zongrenshu`,	`shenyurenshu` = '0' where `id` = '$shop[id]'");
 	}
