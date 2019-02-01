@@ -16,9 +16,7 @@
     
 <!-- 栏目页面顶部 -->
 
-
 <!-- 内页顶部 -->
-
     <section class="clearfix g-member" id="g-member-tab-1">
         <div class="clearfix m-round m-name">
             <img id="personal-home-background" src="{G_UPLOAD_PATH}/personal-home-background.png">
@@ -29,7 +27,7 @@
                 <div class="user-info">
 					<span class="user-name">
 						<span class="user-name-nick">{wc:fun:get_user_name($member['uid'])}</span>
-						<span class="user-name-num"> ({wc:$member['nickname']})</span>
+						<span class="user-name-num"> ({wc:$member['username']})</span>
 					</span>
                     <span class="z-class-icon01 gray02"><s></s>{wc:$member['yungoudj']}</span>
                 </div>
@@ -76,6 +74,15 @@
                         <span class="z-arrow-r-container">
 							<span class="z-arrow-r"></span>
 						</span>
+                    </a>
+                </li>
+                <li>
+                    <a href="{WEB_PATH}/mobile/home/singlelist">
+                        <b class="z-arrow shaidan"></b>
+                        <span>我的晒单</span>
+                        <span class="z-arrow-r-container">
+                            <span class="z-arrow-r"></span>
+                        </span>
                     </a>
                 </li>
 
