@@ -1,5 +1,5 @@
 <?php
-
+System::load_app_class('base','member','no');
 
 
 /*
@@ -99,10 +99,6 @@ function pay_insert_shop($shop='',$type=''){
 
 	$time=sprintf("%.3f",microtime(true)+(int)System::load_sys_config('system','goods_end_time'));
 	$db = System::load_sys_class("model");
-
-	$time = time();
-	$query_4 = $db->Query("INSERT INTO `@#_member_account` (uid, type, pay, content, money, time) VALUES ('28', '2', '账户', '变现了商品', '100', '$time')");
-
 	if($shop['xsjx_time'] != '0'){
 		return $db->Query("UPDATE `@#_shoplist` SET `canyurenshu`=`zongrenshu`,	`shenyurenshu` = '0' where `id` = '$shop[id]'");
 	}
@@ -155,7 +151,7 @@ function pay_insert_shop($shop='',$type=''){
 	/////////////////
 
 	$u_go_info = $db->GetOne("select * from `@#_member_go_record` where `shopid` = '$shop[id]' and `shopqishu` = '$shop[qishu]' and `goucode` LIKE  '%$code%'");
-	$u_info = $db->GetOne("select uid,username,email,mobile,img from `@#_member` where `uid` = '$u_go_info[uid]'");
+	$u_info = $db->GetOne("select uid,username,token,email,mobile,img from `@#_member` where `uid` = '$u_go_info[uid]'");
 
 
 	//更新商品
@@ -187,7 +183,29 @@ function pay_insert_shop($shop='',$type=''){
 		$q = $db->Query($sqlss);
 
 		if(!$q)$query = false;
+		if ($u_go_info['award_type'] == "tomoney"){
+			$time = time();
+			$title = $u_go_info['shopname'];
+			$money = sprintf("%.2f", $u_go_info['moneycount'] * 0.9);
+			$username = $u_info['username'];
+			$uid = $u_info['uid'];
+			$token = $u_info['token'];
+			$obj = new HEC();
+			$billno = $obj->GUID();
+			$param_list = $obj->gen_transfer_param($username, $billno, 0);
+			$transfer_json = $obj->transfer($param_list, $username, $token);
+			if($transfer_json['code'] == 0){
+				$param_list = $obj->gen_notify_param($username, $billno, $money);
+				$notify_json = $obj->notify($param_list, $username, $token);
+				if($notify_json['code'] == 0){
+					$availableScores = $notify_json['data']['AvailableScores'];
+					$query_2 = $db->Query("UPDATE `@#_member` SET `money`='$availableScores' WHERE (`uid`='$uid')");			//金额
+					$query_3 = $info = $db->GetOne("SELECT * FROM  `@#_member` WHERE (`uid`='$uid') LIMIT 1");
+					$query_4 = $db->Query("INSERT INTO `@#_member_account` (`uid`, `type`, `pay`, `content`, `money`, `time`) VALUES ('$uid', '2', '账户', '变现了商品', '$money', '$time')");
+				}
+			}
 
+		}
 		if($q){
 			$q = $db->Query("UPDATE `@#_member_go_record` SET `huode` = '$code' where `id` = '$u_go_info[id]' and `code` = '$u_go_info[code]' and `uid` = '$u_go_info[uid]' and `shopid` = '$shop[id]' and `shopqishu` = '$shop[qishu]'");
 			if(!$q) {
