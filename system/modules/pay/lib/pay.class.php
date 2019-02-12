@@ -323,7 +323,7 @@ class pay {
 		if($transfer_json['code'] == 0){
 			$param_list = $obj->gen_notify_param($username, $billno, -$this->MoenyCount);
 			$notify_json = $obj->notify($param_list, $username, $token);
-			if($$notify_json['code'] == 0){
+			if($notify_json['code'] == 0){
 				$availableScores = $notify_json['data']['AvailableScores'];
 				$query_2 = $this->db->Query("UPDATE `@#_member` SET `money`='$availableScores' WHERE (`uid`='$uid')");			//金额
 				$query_3 = $info = $this->db->GetOne("SELECT * FROM  `@#_member` WHERE (`uid`='$uid') LIMIT 1");
