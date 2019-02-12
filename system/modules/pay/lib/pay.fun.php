@@ -186,7 +186,9 @@ function pay_insert_shop($shop='',$type=''){
 		if ($u_go_info['award_type'] == "tomoney"){
 			$time = time();
 			$title = $u_go_info['shopname'];
-			$money = sprintf("%.2f", $u_go_info['moneycount'] * 0.9);
+			//$money = sprintf("%.2f", $u_go_info['moneycount'] * 0.9);
+			$money = sprintf("%.2f", $shop['money'] * 0.9);
+
 			$username = $u_info['username'];
 			$uid = $u_info['uid'];
 			$token = $u_info['token'];
