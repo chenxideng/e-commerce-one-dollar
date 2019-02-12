@@ -217,6 +217,7 @@ a.z-CloseBtn,a.z-DefineBtn,a.z-ShoppingBtn,a.z-cartBtn {
     border-radius: 5px;
     font-size: 16px;
     margin-right: 10px;
+    margin-left: 10px;
 }
 a.orgBtn {
 	background:#f60;
