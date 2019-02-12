@@ -120,8 +120,8 @@ $(function() {
             var q = t.find("div.z-Cart-tips");
             if (r > 100) {
                 if (q.length == 0) {
-                    var s = $('<div class="z-Cart-tips">已超过100人次，请谨慎参与！</div>');
-                    t.prepend(s)
+                    //var s = $('<div class="z-Cart-tips">已超过100人次，请谨慎参与！</div>');
+                    //t.prepend(s)
                 }
             } else {
                 q.remove()
