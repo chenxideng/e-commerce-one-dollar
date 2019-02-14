@@ -477,12 +477,20 @@ class mobile extends base {
 	     $webname=$this->_cfg['web_name'];
 		//最新揭晓
 		$shopqishu=$this->db->GetList("select * from `@#_shoplist` where `q_end_time` is not null ORDER BY `q_end_time` DESC LIMIT 0,4");
-
-
 		$shoplist=$this->db->GetList("select * from `@#_shoplist` where 1 ORDER BY `canyurenshu` DESC LIMIT 4");
 		$member_record=$this->db->GetList("select * from `@#_member_go_record` order by id DESC limit 6");
 		$key="最新揭晓";
 		include templates("mobile/index","lottery");
+	}
+
+	//最近成交
+	public function lotteryAll(){
+	    $webname=$this->_cfg['web_name'];
+		$shopqishu=$this->db->GetList("select * from `@#_shoplist` where `q_end_time` is not null ORDER BY `q_end_time` DESC LIMIT 0,4");
+		$shoplist=$this->db->GetList("select * from `@#_shoplist` where 1 ORDER BY `canyurenshu` DESC LIMIT 4");
+		$member_record=$this->db->GetList("select * from `@#_member_go_record` order by id DESC limit 6");
+		$key="最近成交";
+		include templates("mobile/index","lotteryAll");
 	}
 
 	//商品购买记录

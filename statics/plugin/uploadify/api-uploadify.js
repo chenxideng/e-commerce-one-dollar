@@ -32,7 +32,6 @@ function GetUploadify(path,frame,title,type,dir,num,size,input,func)
 		
 		iframe_str=iframe_str+'allowtransparency="true" class="uploadframe" scrolling="no">';
 		iframe_str=iframe_str+'</iframe>';
-	
 		
 	$("body").append(iframe_str);	
 	$("iframe.uploadframe").css("height",$(document).height()).css("width","100%").css("position","absolute").css("left","0px").css("top","0px").css("z-index","999999").show();

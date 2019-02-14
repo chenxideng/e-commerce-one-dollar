@@ -19,7 +19,7 @@ class uploadify extends SystemAction {
 		$title=isset($getinfo[4]) ? htmlspecialchars($getinfo[4]) : '';		//标题
 		$type=isset($getinfo[5]) ? htmlspecialchars($getinfo[5]) : '';		//上传类型
 		$path=isset($getinfo[6]) ? htmlspecialchars($getinfo[6]) : '';		//上传的文件夹
-		$num=isset($getinfo[7]) ? intval($getinfo[7]) : 0;					//上传个数
+		$num=isset($getinfo[7]) ? 10 : 0;					//上传个数
 		$size=isset($getinfo[8]) ? intval($getinfo[8]) : 0;					//最大size大小
 		$frame=isset($getinfo[9]) ? htmlspecialchars($getinfo[9]) : '';		//iframe的ID
 		$input=isset($getinfo[10]) ? htmlspecialchars($getinfo[10]) : '';	//父框架保存图片地址的input的id

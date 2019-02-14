@@ -146,12 +146,6 @@ if(System::load_sys_config('system','index_name') == NULL){
 }
 
 
-/**
-*
-*
-**/
-
-
  /*
  *---------------------------------------------------------------
  * UPLOAD URL
@@ -233,20 +227,10 @@ function_exists('date_default_timezone_set') && date_default_timezone_set(System
 
 
 /**
-*
-*
-*
-*/
-
-
-
-/**
 *		WEB_INFO
 */
 	
 $_cfg = System::load_sys_config("system");
-
-
 
 
 /*
@@ -257,7 +241,6 @@ $_cfg = System::load_sys_config("system");
  */
  
 define('G_ADMIN_DIR',System::load_sys_config("system",'admindir'));
-
 
 
 /**

@@ -63,7 +63,8 @@
 			{wc:if:end}
 		    </ul>
 	    </article>
-	    <article id="bankList" class="clearfix mt10 m-round g-pay-ment g-bank-ct">
+	    <p class="g-pay-bline"></p>
+	    <article id="bankList" class="clearfix m-round g-pay-ment g-bank-ct">
 		    <ul>
 			    <li class="gray6 z-pay-grayC"><s class="z-arrow"></s>奖品配置</li>
 			    <li class="gray9" umb='CMBCHINA'><i class="z-bank-Roundsel"><s></s></i>奖品变现</li>
@@ -71,7 +72,8 @@
 		    </ul>
 		    </ul>
 	    </article>
-	    <article id="ship-details" style="display:none;" class="mt10 m-round g-pay-ment">
+	    <p class="g-pay-bline"></p>
+	    <article id="ship-details" style="display:none;" class="m-round g-pay-ment">
 			<li class="gray9 z-pay-ff z-pay-grayC">
 				<i id="address"></i>
 				<span>确认收货地址</span><a href="{WEB_PATH}/mobile/home/address" class="fr orange arial">去修改</a>
@@ -80,7 +82,7 @@
 				<li><span class="gray9">邮寄地址: </span>{wc:fun:get_user_real_address($member['ship_addr'])}</li>
 			</li>
 		</article>
-		<article id="award-details" style="display:none;" class="mt10 m-round g-pay-ment">
+		<article id="award-details" style="display:none;" class="m-round g-pay-ment">
 			<li class="gray9 z-pay-ff z-pay-grayC">
 				<i id="address"></i>
 				<span>奖品变现金额: {wc:$MoenyCount} * 0.9</span>

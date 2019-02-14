@@ -401,6 +401,7 @@ class ajax extends base {
 	}
 	//最新揭晓
 	public function getLotteryList(){
+
 	   $FIdx=$this->segment(4);
 	   $EIdx=10;//$this->segment(5);
 	   $isCount=$this->segment(6);
@@ -421,6 +422,42 @@ class ajax extends base {
 		   $shoplist['listItems'][$key]['userphoto']=get_user_key($val['q_uid'],'img');
 		   $shoplist['listItems'][$key]['q_end_time']=microt($val['q_end_time']);
 		   $shoplist['listItems'][$key]['gonumber']=$recodeinfo['gonumber'];
+		 }
+		  $shoplist['code']=0;
+		  $shoplist['count']=count($shopsum);
+		}
+
+		echo json_encode($shoplist);
+
+	}
+
+	//最近成交
+	public function getLotteryAllList(){
+
+	   $FIdx=$this->segment(4);
+	   $EIdx=10;//$this->segment(5);
+	   $isCount=$this->segment(6);
+
+	   $shopsum=$this->db->GetList("select * from `@#_shoplist` where `q_end_time` !='' ");
+
+	   //最近成交
+		//$shoplist['listItems']=$this->db->GetList("select * from `@#_shoplist` where `q_end_time` !='' ORDER BY `q_end_time` DESC limit $FIdx,$EIdx");
+	   $shoplist['listItems']=$this->db->GetList("select * from `@#_member_go_record` ORDER BY id DESC limit $FIdx,$EIdx");
+
+		if(empty($shoplist['listItems'])){
+		  $shoplist['code']=1;
+		}else{
+		 foreach($shoplist['listItems'] as $key=>$val){
+		 //查询出购买次数
+		   $thumb=$this->db->GetOne("select `thumb` from `@#_shoplist` where `id`='$val[shopid]' ");
+		   //echo "select `gonumber` from `@#_member_go_record` where `uid` !='$val[q_uid]'  and `shopid`='$val[id]' ";
+		   $shoplist['listItems'][$key]['shopid']=$val['shopid'];
+		   $shoplist['listItems'][$key]['thumb']=$thumb['thumb'];
+		   //$shoplist['listItems'][$key]['shopname']=$val['shopname'];
+		   $shoplist['listItems'][$key]['q_user']=get_user_name($val['uid']);
+		   $shoplist['listItems'][$key]['userphoto']=get_user_key($val['uid'],'img');
+		   $shoplist['listItems'][$key]['q_end_time']=microt($val['time']);
+		   $shoplist['listItems'][$key]['gonumber']=$val['gonumber'];
 		 }
 		  $shoplist['code']=0;
 		  $shoplist['count']=count($shopsum);
