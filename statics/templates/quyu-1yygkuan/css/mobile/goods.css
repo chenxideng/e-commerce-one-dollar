@@ -398,7 +398,7 @@
 .pPic {
 	width:100%;
 	box-shadow:0 -1px 1px #dbdbdb inset;
-	padding:20px 0 18px;
+	padding:40px 0 18px;
 	text-align:center;
 	background:#ffffff;
 	position:relative;
@@ -435,7 +435,7 @@
 .pImg li img {
 	width:200px;
 	height:200px;
-	margin:0 5px;
+	margin:15px 5px;
 	background:#fff;
 }
 .pImg .direction-nav {
@@ -1023,7 +1023,7 @@
 .pOngoing {
     color: #fff;
     position: fixed;
-    background: #fff;
+    background: #eee;
     bottom: 0px;
     z-index: 99999;
     width: 100%;

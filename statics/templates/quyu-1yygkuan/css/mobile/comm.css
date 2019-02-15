@@ -481,9 +481,11 @@ a.z-Site {
 	height:40px;
 	background:#f60;
 	/*border-bottom:1px solid #e35b00;*/
-	position:relative;
+	position:fixed;
 	color:white;
 	text-align:center;
+	z-index:100;
+	width:100%;
 }
 .g-header h2 {
 	text-align:center;

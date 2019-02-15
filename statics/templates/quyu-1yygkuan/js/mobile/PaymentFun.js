@@ -60,8 +60,9 @@ $(function() {
         var k = function(y) {
             e = y;			 
             if (y > 0) {
-                h.html('<s class="z-arrow"></s>奖品配置: ' + (r == "奖品变现" ? "奖品变现": '<b class="z-mlr">' + r + "</b>"));
-                h.removeClass("z-pay-grayC").nextAll().show();
+                //h.html('<s class="z-arrow"></s>奖品配置: ' + (r == "奖品变现" ? "奖品变现": '<b class="z-mlr">' + r + "</b>"));
+                //h.html('<s class="z-arrow"></s>奖品配置: 奖品变现<b class="z-mlr"></b>');
+                //h.removeClass("z-pay-grayC").nextAll().show();
                 o = true
 				checkpay='money'
 				if(r=='奖品变现'){
@@ -105,21 +106,36 @@ $(function() {
                 }
             }
         }
+
+        $(document).ready(function(){
+            var l = function(z) {
+                if (c.attr("sel") == 1) {
+                    var y = ffdk - z;
+                    if (y > 0) {
+                        q(z)
+                    } else {
+                        q(ffdk);
+                        k( - y)
+                    }
+                } else {
+                    k(z)
+                }
+            }
+            var y = parseInt(d);
+            f(y >= x ? x: y);
+            l(x)
+
+        });
+/*
         if (parseInt(d) > 0) {
             p.parent().click(function() {
-                k(0);
+                k(0)
                 if (p.attr("sel") == 1) {
-                    f(0);
                     l(x)
                 } else {
-                    // go here
                     var y = parseInt(d);
-                    //if (y > 0) {
-                        f(y >= x ? x: y);
-                    //    l(y >= x ? 0 : x - y)
-                    //} else {
-                        l(x)
-                    //}
+                    f(y >= x ? x: y);
+                    l(x)
                 }
             });
             var l = function(z) {
@@ -135,7 +151,7 @@ $(function() {
                     k(z)
                 }
             }
-        }
+        }*/
         var o = false;
         var v = 1;
         $("li", m).each(function(y) {		  
@@ -155,7 +171,7 @@ $(function() {
                     }
                 })
             } else {	 
-                z.click(function() {				 
+                z.click(function() {			 
                     v = y;
                     r = z.text();
                     z.children("i").attr("class", "z-bank-Roundsel");
@@ -177,7 +193,7 @@ $(function() {
             }
         });		 
         if (e > 0) {	 
-            h.removeClass("z-pay-grayC").html('<s class="z-arrow"></s>选择<b class="z-mlr">' + r + "</b>支付" + ((g > 0 || w > 0) ? "剩余": "") + '<em class="orange">' + e + ".00</em>元").nextAll().show();
+            h.removeClass("z-pay-grayC").html('<s class="z-arrow"></s>选择<b class="z-mlr">' + r + "</b>").nextAll().show();
             o = true
 			banktype='CMBCHINA-WAP';
 			checkpay='bank'
