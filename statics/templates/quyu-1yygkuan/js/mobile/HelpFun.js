@@ -27,7 +27,7 @@ $(function() {
                     g.children().eq(1).hide()
                 });
                 $("body,html").animate({
-                    scrollTop: a[b]
+                    //scrollTop: a[b]
                 },
                 0)
             }
