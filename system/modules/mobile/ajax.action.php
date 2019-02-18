@@ -51,7 +51,7 @@ class ajax extends base {
 		   $shopid = ereg_replace('[^0-9]','',$val['link']);
 		  // $shopid=explode("/",$val['link']);
 		   $slides['listItems'][$key]['alt']=$val['color'];
-		   $slides['listItems'][$key]['url']=WEB_PATH."/mobile/mobile/item/".$shopid;
+		   $slides['listItems'][$key]['url']=WEB_PATH.$val['link'];
 		   $slides['listItems'][$key]['src']=G_WEB_PATH."/statics/uploads/".$val['img'];
 		   $slides['listItems'][$key]['width']='614PX';
 		   $slides['listItems'][$key]['height']='110PX';

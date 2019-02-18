@@ -564,16 +564,25 @@ class mobile extends base {
 
 	  include templates("mobile/index","calResult");
 	}
-	//新手指南
+	//帮助中心
 	public function about(){
 	 $webname=$this->_cfg['web_name'];
 	 $category=$this->db->GetOne("select * from `@#_category` where `parentid`='1' and `name`='新手指南'");
 
 	 $article=$this->db->GetList("select * from `@#_article` where `cateid`='$category[cateid]'");
 
-	include templates("mobile/index","about");
+	include templates("mobile/index","new");
 	}
 
+	//帮助中心
+	public function newbie(){
+	include templates("mobile/index","newbie");
+	}
+
+	//计算
+	public function rules(){
+	include templates("mobile/index","rules");
+	}
 
 	//用户服务协议
 	public function terms(){
