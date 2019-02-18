@@ -571,7 +571,7 @@ class mobile extends base {
 
 	 $article=$this->db->GetList("select * from `@#_article` where `cateid`='$category[cateid]'");
 
-	include templates("mobile/index","new");
+	include templates("mobile/index","about");
 	}
 
 	//帮助中心
