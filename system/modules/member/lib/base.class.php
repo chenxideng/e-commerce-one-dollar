@@ -282,7 +282,7 @@ class HEC
 		    $param_list,
 		    array_keys($param_list)
 		));
-		echo $param_str . '<br>';
+		//echo $param_str . '<br>';
 		$key_str = implode("&", $param_list) . MD5_KEY;
 		// DES CBC 加解密
 		$des = new DES(DES_KEY, 'DES-CBC', DES::OUTPUT_HEX, DES_IV);
@@ -322,7 +322,7 @@ class HEC
 		    $param_list,
 		    array_keys($param_list)
 		));
-		echo $param_str . '<br>';
+		//echo $param_str . '<br>';
 		$key_str = implode("&", $param_list) . MD5_KEY;
 		// DES CBC 加解密
 		$des = new DES(DES_KEY, 'DES-CBC', DES::OUTPUT_HEX, DES_IV);
