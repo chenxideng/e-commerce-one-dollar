@@ -258,8 +258,7 @@ class mobile extends base {
 
 		$title=$item['title'];
 		$syrs=$item['zongrenshu']-$item['canyurenshu'];
-		$item['picarr'] = unserialize($item['picarr']) ;
-
+		$item['picarr'] = $item['picarr'];
 
 		$us=$mysql_model->GetList("select * from `@#_member_go_record` where `shopid`='".$itemid."' AND `shopqishu`='".$item['qishu']."'ORDER BY id DESC LIMIT 6");
 

@@ -29,9 +29,7 @@
     	        <div id="sliderBox" class="pImg">
                     <div class="loading"><b></b>正在加载</div>
                     <ul class="slides">
-					{wc:loop $item['picarr'] $imgtu}  
-					<li><img src="{G_UPLOAD_PATH}/{wc:$imgtu}" /></li>
-					{wc:loop:end} 
+					<li><a href="{WEB_PATH}/mobile/mobile/goodsdesc/{wc:$item['id']}"><img src="{G_UPLOAD_PATH}/{wc:$item['picarr']}" /></a></li>
                     </ul>
                 </div>
             </div>
