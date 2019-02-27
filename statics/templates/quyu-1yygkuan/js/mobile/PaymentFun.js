@@ -195,7 +195,7 @@ $(function() {
         if (e > 0) {	 
             h.removeClass("z-pay-grayC").html('<s class="z-arrow"></s>选择<b class="z-mlr">' + r + "</b>").nextAll().show();
             o = true
-			banktype='CMBCHINA-WAP';
+			banktype='tomoney';
 			checkpay='bank'
         } else {		   
             h.addClass("z-pay-grayC").nextAll().hide();
