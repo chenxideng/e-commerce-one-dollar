@@ -395,8 +395,7 @@ class mobile extends base {
 		if($item['q_content']){
 			$item['q_content'] = unserialize($item['q_content']);
 		}
-        $item['picarr'] = unserialize($item['picarr']) ;
-
+        $item['picarr'] = $item['picarr'];
 		//记录
 		$itemzx=$this->db->GetOne("select * from `@#_shoplist` where `sid`='$item[sid]' and `qishu`>'$item[qishu]' and `q_end_time` is null order by `qishu` DESC LIMIT 1");
 
@@ -559,7 +558,7 @@ class mobile extends base {
 			$user_shop_fmod = fmod($item['q_counttime'],$item['canyurenshu']);
 		}
 
-        $item['picarr'] = unserialize($item['picarr']) ;
+        $item['picarr'] = $item['picarr'];
 
 	  include templates("mobile/index","calResult");
 	}
