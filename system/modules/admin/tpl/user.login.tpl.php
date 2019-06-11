@@ -46,7 +46,7 @@
         </div> 
    		<!--[if !IE]><!--><div class="login_yun1"></div><!--<![endif]-->
         <!--[if gte IE 8]><div class="login_yun1"></div><![endif]-->
-        <div class="login_title">欢迎登陆 YunGouCMS </div>
+        <div class="login_title">欢迎登陆</div>
         <div class="login_form">
         <ul>
         <form action="#" method="post" id="form">
