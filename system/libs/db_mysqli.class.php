@@ -59,6 +59,26 @@ final class db_mysqli {
 	private function __clone(){
 	}
 	
+	public function GetVersion($version=false) {
+		
+		$mysql_version= $this->link->server_info;
+		$mysql_version = explode(".",trim($mysql_version));
+		if($version){
+			return $mysql_version[0].'.'.$mysql_version[1];
+		}else{
+			return $mysql_version[0].'.'.$mysql_version[1].'.'.$mysql_version[2];
+		}
+
+	}	
+	
+	public function GetError(){
+		return $this->link->error;
+	}
+	public function GetErrno(){
+		return $this->link->errno;
+		//return $this->link->connect_errno;
+	}
+	
 	private function connect(){
 
 		$this->link = new mysqli($this->config['hostname'], $this->config['username'], $this->config['password'],$this->config['database']);
@@ -105,25 +125,6 @@ final class db_mysqli {
 		$this->link->close();		
 	}
 	
-	public function GetVersion($version=false) {
-		
-		$mysql_version= $this->link->server_info;
-		$mysql_version = explode(".",trim($mysql_version));
-		if($version){
-			return $mysql_version[0].'.'.$mysql_version[1];
-		}else{
-			return $mysql_version[0].'.'.$mysql_version[1].'.'.$mysql_version[2];
-		}
-
-	}	
-	
-	public function GetError(){
-		return $this->link->error;
-	}
-	public function GetErrno(){
-		return $this->link->errno;
-		//return $this->link->connect_errno;
-	}
 	
 	/**
 	 * 获取最后一次添加记录的主键号
