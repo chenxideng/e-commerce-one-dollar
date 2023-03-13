@@ -176,7 +176,7 @@ function _encrypt($string, $operation = 'ENCODE', $key = '', $expiry = 0){
 	$i = 0; $result = '';
 	$string_length = strlen($string);
 	for ($i = 0; $i < $string_length; $i++){
-		$result .= chr(ord($string{$i}) ^ ord($keys{$i % 32}));
+		$result .= chr(ord($string[$i]) ^ ord($keys[$i % 32]));
 	}
 	if($operation == 'ENCODE') {
 		$retstrs =  str_replace('=', '', base64_encode($result));
