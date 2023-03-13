@@ -128,15 +128,15 @@ class param {
 	}
 	
 	private function sub_addslashes(){	
-		if(!get_magic_quotes_gpc()) {
+		//if(!get_magic_quotes_gpc()) {
 				$_POST = new_addslashes($_POST);
 				$_GET = new_addslashes($_GET);			
 				$_REQUEST = new_addslashes($_REQUEST);
 				$_COOKIE = new_addslashes($_COOKIE);
 				$this->route_url = new_addslashes($this->route_url);
-		}else{
-			$this->route_url = new_addslashes($this->route_url);
-		}
+		//}else{
+			//$this->route_url = new_addslashes($this->route_url);
+		//}
 		
 	}
 	
